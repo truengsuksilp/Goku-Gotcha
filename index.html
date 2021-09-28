@@ -19,11 +19,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
+        <div class="row" id='row__avatar'>
             <div class="col" id='col__avatar'>
-                <img class:'img-fluid' src="https://media.giphy.com/media/1qB3EwE3c54A/giphy.gif?cid=ecf05e47pqsaixi1cwdc3ak44nxhdszqi8w6nj08ct14sx8g&rid=giphy.gif&ct=g" alt="">
+                <img 
+                  class:"img-fluid" id:"avatar" 
+                  src="https://media.giphy.com/media/JdyQWFOVo6s5G/giphy.gif?cid=ecf05e47200v8hf0832epj8vg0l4ossb6qnvish73bsoomuq&rid=giphy.gif&ct=g" alt="gokuBoy">
             </div>
-            <div class="col">
+            <div class="col" id='col__gameDescription'>
                 <h2>Game Description</h2>
                 <p>
                     Hit play to start playing
@@ -42,14 +44,22 @@
                 </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="col" id='col__playButton'>
-                <button type="button" class="btn btn-danger">PLAY !!</button>
-            </div>
-            <div class="col">
-
+        <div class="row" id='row__buttons'>
+            <div class="col" id='col__startButton'>
+                <button type="button" class="btn btn-danger" id='startButton'>Start !!</button>
             </div>
         </div>
     </div>
 </body>
 </html>
+
+
+<!-- <div class="col">
+    <button type="button" class="btn btn-primary">Eat</button>
+</div>
+<div class="col">
+    <button type="button" class="btn btn-primary">Sleep</button>
+</div>
+<div class="col">
+    <button type="button" class="btn btn-primary">Play</button>
+</div> -->
