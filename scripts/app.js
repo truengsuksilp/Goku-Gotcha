@@ -5,13 +5,19 @@ console.log('[app.js] Loaded');
 
 /* === Variables: Global === */
 
-/* === Dom Elements  === */
+/* === Dom Elements: Landing Page  === */
 const $start = $('.btn.btn-danger');
 const $avatar = $('img');
 const $col__gameDescription = $('#col__gameDescription');
 const $col__avatar = $('.col__avatar');
 const $col__startButton = $('#col__startButton');
 const $row__avatar = $('#row__avatar');
+
+/* === Dom Elements: Game Page  === */
+// let $gameDOM.eatButton = $('#eatButton');
+// let $gameDOM.sleepButton = $('#sleepButton');
+// let $gameDOM.playButton = $('playButton');
+// let $gameDOM.hungerLevel = $('#hungerLevel');
 
 // FIXME Cannot use $rol__buttons with function addHealthButtons(){}
 const $rol__buttons = $('#row__buttons');
@@ -20,50 +26,124 @@ const $rol__buttons = $('#row__buttons');
 /* === Variables: Objects with Methods === */
 
 const goku = {
+    name: 'Goku',
+    age: 0,
+    hungerLevel: 5,
+    sleepLevel: 5,
+    boredomLevel: 5,
     avatarStage1:'https://media.giphy.com/media/u49rMyXHrTUw8/giphy.gif?cid=790b76111601a3644bfa79fb8520ea1cd99db6869145ae3d&rid=giphy.gif&ct=g',
 }
 
-/* === Event Functions  === */
+const gameInitiate = {
+    updateToAvatar1 (event){
+        console.log('Update avatar');
+        // $avatar.remove();
+        $avatar.attr('src', goku.avatarStage1)
+    },
+    removeStartButton(event){
+        console.log('Removed Start Button');
+        $col__startButton.remove();
+    },
 
-const updateToAvatar1 = function updateToAvatar1 (event){
-    console.log('Update avatar');
-    // $avatar.remove();
-    $avatar.attr('src', goku.avatarStage1)
+    // FIXME Remove description does not collapse
+    removeGameDesc(event){
+        console.log('Removed Game Description');
+        $col__gameDescription.remove();
+    },
+    
+    addHealthLevelsAndButtons(event){
+        console.log('Add Health Levels');
+        $('#row__buttons').append(`
+            <div class='row'>
+              <div class="col">
+                  <h5 id="hungerLevel">Hunger: ${goku.hungerLevel}</h5>
+                  <button type="button" class="btn btn-primary" id='eatButton'>Eat</button>
+              </div>
+              <div class="col">
+                  <h5 id="sleepLevel">Sleepiness: ${goku.sleepLevel}</h5>
+                  <button type="button" class="btn btn-success" id='sleepButton'>Sleep</button>
+              </div>
+              <div class="col">
+                  <h5 id="boredomLevel">Boredom: ${goku.boredomLevel}</h5>
+                  <button type="button" class="btn btn-danger" id='playButton'>Play</button>
+              </div>
+            </div>`
+        );
+    },
+
+    addNameAge(event){
+        console.log('Add Health Buttons');
+        $('body').prepend(`
+            <div class='container'>
+                <div class='row'>
+                  <h4 id='avatarName'>Name: ${goku.name}</h4>
+                </div>  
+                <div class='row'>
+                  <h4 id='avatarAge'>Age: ${goku.age}</h4>
+                </div>  
+            </div>`
+        );
+    }
 }
 
-const removeStartButton = function removeStartButton(event){
-    console.log('Removed Start Button');
-    $col__startButton.remove();
+const gamePlay = {
+    eat__gokuHungerLevel(event){
+        console.log('Goku eats');
+        goku.hungerLevel--
+        $('#hungerLevel').text(`Hunger: ${goku.hungerLevel}`);
+    },
+
+    eat__gokuSleepLevel(event){
+        console.log('Goku sleeps');
+        goku.sleepLevel--
+        $('#sleepLevel').text(`Sleepiness: ${goku.sleepLevel}`);
+    },
+
+    eat__gokuBoredomLevel(event){
+        console.log('Goku plays');
+        goku.boredomLevel--
+        $('#boredomLevel').text(`Sleepiness: ${goku.boredomLevel}`);
+    },
 }
 
-// FIXME Remove description does not collapse
-const removeGameDesc = function removeGameDesc(event){
-    console.log('Removed Game Description');
-    $col__gameDescription.remove();
+const avatarAgeAndEvolve = {
+    timer: null,
+    agingFunction(){
+        goku.age++;
+        $('#avatarAge').text(`Age: ${goku.age}`)
+    },
+    startTimer(){
+        setInterval(this.agingFunction, 3000)
+    }
+
+
 }
 
-const addHealthButtons = function addHealthButtons(event){
-    console.log('Add Health Buttons');
-    $('#row__buttons').append(`<div class="col">
-    <button type="button" class="btn btn-primary">Eat</button>
-</div>
-<div class="col">
-    <button type="button" class="btn btn-success">Sleep</button>
-</div>
-<div class="col">
-    <button type="button" class="btn btn-danger">Play</button>
-</div>`)
-}
+/* === Event Functions === */
+
+// timer = setInterval(agingFunction, 1000)
+// clearInterval(timer)
 
 
 /* === Event Listeners === */
 
-// $start.on('click', removeGameDesc);
-$start.on('click', updateToAvatar1);
-$start.on('click', removeStartButton);
-$start.on('click', addHealthButtons);
+$start.on('click', gameInitiate.updateToAvatar1);
+$start.on('click', gameInitiate.removeStartButton);
+$start.on('click', gameInitiate.addHealthLevelsAndButtons);
+$start.on('click', gameInitiate.addNameAge);
+
+$start.on('click', avatarAgeAndEvolve.startTimer());
+
+// FIXME Remove description does not collapse
+// $start.on('click', gameInitiate.removeGameDesc);
+
 
 /* === Invoked Functions === */
 
+// AUTO START
+$start.click();
 
-
+// Invoke after game started Manually
+$('#eatButton').on('click', gamePlay.eat__gokuHungerLevel);
+$('#sleepButton').on('click', gamePlay.eat__gokuSleepLevel);
+$('#playButton').on('click', gamePlay.eat__gokuBoredomLevel);

@@ -1,9 +1,9 @@
-/* Global */
+/* === Global === */
 
 * {
     box-sizing: border-box;
     background-color: black;
-    border: 1px solid rebeccapurple;
+    /* border: 1px solid rebeccapurple; */
 }
 
 body {
@@ -11,11 +11,18 @@ body {
     margin: 50px 0px;
 }
 
-/* Text styling */
+/* === Text styling === */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-h2, p { font-family: font-family: 'Inter', sans-serif;;}
+h2, h4, p { 
+    font-family: 'Inter', sans-serif;
+    color: white;
+}
+
+h4 {
+    color: white;
+}
 
 p, li {font-size: 0.8rem;}
 
@@ -23,20 +30,32 @@ span { color: red; }
 
 
 
-/* Component Specific */
+/* === Component Specific === */
 
 
 div.container {
     border: 5px solid goldenrod;
     border-radius: 3%;
     overflow: hidden;
-    padding: 20px;
-    
+    /* padding: 20px;   */
+    margin-bottom: 20px;  
 }
+
+div.row {
+    margin-top: 10px;
+    padding-left: 20px;  
+    min-width: 500px;
+}
+
+/* div.container.game {
+    margin-top: 20px;
+} */
 
 div.col {
     color: white;
-    padding: 20px;
+    /* padding: 15px; */
+    padding-left: 20px;
+    overflow: hidden;
     /* display: flex;
     justify-content: center; */
 }
@@ -49,10 +68,14 @@ div.col {
 }
 #col__playButton {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 #startButton{
     min-width: 500px;
     margin: 20px;
+}
+
+#eatButton, #sleepButton, #playButton {
+    min-width: 100px;
 }
