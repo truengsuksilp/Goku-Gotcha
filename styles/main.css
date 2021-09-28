@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+    border: 1px solid goldenrod;
+    background-color: black;
+}
+
+body {
+    background-color: black;
+    margin: 50px 0px;
+}
+
+span {
+    color: red;
+}
+
+div.col {
+    color: white;
+    /* display: flex;
+    justify-content: center; */
+}
+
+#col__avatar {
+    display: flex;
+    justify-content: center;
+}
+#col__playButton {
+    display: flex;
+    justify-content: center;
+}
+
+.btn.btn-danger{
+    min-width: 400px;
+    margin: 20px;
+}
