@@ -3,7 +3,7 @@
 * {
     box-sizing: border-box;
     background-color: black;
-    /* border: 1px solid rebeccapurple; */
+    border: 1px solid rebeccapurple;
 }
 
 body {
@@ -43,6 +43,7 @@ div.container {
 
 div.row {
     margin-top: 10px;
+    margin-bottom: 10px;
     padding-left: 20px;  
     min-width: 500px;
 }
@@ -60,11 +61,14 @@ div.col {
     justify-content: center; */
 }
 
+#row__avatar {
+    justify: center;
+}
+
 #col__avatar {
     display: flex;
-    justify-content: center;
     min-width: 300px;
-    max-width: 400px;
+    /* max-width: 400px; */ -- this gets it to center
 }
 #col__playButton {
     display: flex;

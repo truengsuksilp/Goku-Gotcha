@@ -45,7 +45,6 @@ const gameInitiate = {
         $col__startButton.remove();
     },
 
-    // FIXME Remove description does not collapse
     removeGameDesc(event){
         console.log('Removed Game Description');
         $col__gameDescription.remove();
@@ -135,7 +134,7 @@ $start.on('click', gameInitiate.addNameAge);
 $start.on('click', avatarAgeAndEvolve.startTimer());
 
 // FIXME Remove description does not collapse
-// $start.on('click', gameInitiate.removeGameDesc);
+$start.on('click', gameInitiate.removeGameDesc);
 
 
 /* === Invoked Functions === */
