@@ -29,11 +29,6 @@ const $sleepLevel = $('#sleepLevel');
 const $boredomLevel = $('#boredomLevel');
 
 
-
-// FIXME -- Doesn't work: defined before user clicks starts ==> Undefined
-const $avatarAge = $('#avatarAge'); // 
-
-
 /* === Variables: Objects with Methods === */
 
 const goku = {
@@ -47,7 +42,7 @@ const goku = {
     boredomLevel: 5,
 
     // Goku Aging Values
-    healthLevelUp: 3*1000,
+    healthLevelUp: 3*10000,
     ageLevelUp: 3*1000,
     ageStageCutoff: {
         stage0: 0,
@@ -70,8 +65,7 @@ const goku = {
 
 const gameInitiate = {
 
-    // Poke-a-Square: game.button.click(game.start.bind(this));
-    // New Listener: $start.click(gameInitiate.gameStart.bind(this));
+    $start: $('.btn.btn-danger'),
 
     gameStart(event) {
         console.warn("=== Game Start ===");
@@ -85,7 +79,6 @@ const gameInitiate = {
 
     updateAvatarToStage0(event) {
         console.log('Update avatar');
-        // $avatar.remove();
         $avatar.attr('src', goku.avatarImg.stage0)
     },
 
@@ -101,8 +94,6 @@ const gameInitiate = {
         }
 
         $('input').addClass('invisible');
-        
-        // $('#row__avatarAge').append(`<h4 id="avatarAge">Age: ${goku.age}</h4>`);
         $('#row__avatarAge').append(`<h4 id="avatarAge"></h4>`);
     },
 
@@ -130,39 +121,65 @@ const gameInitiate = {
 
 }
 
-const gamePlay = {
+const gameFeed = {
+    gameFeedInitiation(event){
+        this.eat__gokuHungerLevel();
+        this.sleep__gokuSleepLevel();
+        this.play__gokuBoredomLevel();
+    },
+
     eat__gokuHungerLevel(event) {
         console.log('Goku eats');
         goku.hungerLevel--
         $hungerLevel.text(`Hunger: ${goku.hungerLevel}`);
     },
 
-    eat__gokuSleepLevel(event) {
+    sleep__gokuSleepLevel(event) {
         console.log('Goku sleeps');
         goku.sleepLevel--
         $sleepLevel.text(`Sleepiness: ${goku.sleepLevel}`);
     },
 
-    eat__gokuBoredomLevel(event) {
+    play__gokuBoredomLevel(event) {
         console.log('Goku plays');
         goku.boredomLevel--
         $boredomLevel.text(`Sleepiness: ${goku.boredomLevel}`);
     },
 }
 
-const avatarAgeAndEvolve = {
+const gameAge = {
 
     timerAge: null,
     timerHealth: null,
     // clearInterval(timer)
 
-    agingFunction(){
+    startAging(event){
+        this.startAgeTimer();
+        this.startHealthTimer();
+        this.evolveGokuFunction();
+    },
+
+    startAgeTimer(){
+        this.timerAge = setInterval(this.aging, goku.ageLevelUp);
+    },
+
+    startHealthTimer(){
+        this.timerHealth = setInterval(this.healthLevelIncrease, goku.healthLevelUp);
+    },
+
+    aging(){
         goku.age++;
         $('#avatarAge').text(`Age: ${goku.age}`)
     },
+    
+    // ANCHOR Change avatar 
+    evolveGoku(){
+        if(goku.age >= 10 && goku.age <= 20){
+            $avatar.attr('src', goku.avatarImg.stage1)
+        } 
+    },
 
-    healthLevelIncreaseFunction(){
-        // FIXME while loop fails: while( hungerLevel < 10 ){}
+    healthLevelIncrease(){
         if(goku.hungerLevel <= 9){
             goku.hungerLevel++;
             goku.sleepLevel++;
@@ -173,7 +190,6 @@ const avatarAgeAndEvolve = {
         } else {
             clearInterval(this.startAgeTimer);
             goku.hunger = 0;
-
             $('#gameOverModal').modal('show');
 
             $avatar.css('opacity', 0.5);
@@ -182,80 +198,26 @@ const avatarAgeAndEvolve = {
         };
     },
 
-    startAgeTimer(){
-        this.timer = setInterval(this.agingFunction, goku.ageLevelUp);
-    },
-
-    startHealthTimer(){
-        setInterval(this.healthLevelIncreaseFunction, goku.healthLevelUp);
-    }
-
-    // FIXME While Loop fails... does not read goku.age
-    // while ( goku.age > 10 ){
-    //     $avatar.attr('src', goku.avatarImg.stage1)
-    // }
 
 }
 
 /* === Event Listeners === */
 
-// Initiate
-$start.on('click', gameInitiate.addNameAge);
-$start.on('click', gameInitiate.updateAvatarToStage0);
-$start.on('click', gameInitiate.removeGameDesc);
-$start.on('click', gameInitiate.removeStartButton);
-$start.on('click', gameInitiate.addHealthButtons);
-$start.on('click', gameInitiate.addHealthLevels);
-$restart.on('click', (event) => location.reload());
+$start.click(gameInitiate.gameStart.bind(gameInitiate));
+$start.click(gameFeed.gameFeedInitiation.bind(gameFeed));
+$start.click(gameAge.startAging.bind(gameAge));
 
-// Timer
-$start.on('click', avatarAgeAndEvolve.startAgeTimer());
-$start.on('click', avatarAgeAndEvolve.startHealthTimer());
-
-// FIXME Combined starter code
-// EXAMPLE from Poke-a-square: game.button.click(game.start.bind(this));
-// $start.click(gameInitiate.gameStart.bind(this));
 
 /* === Invoked Functions === */
 
 // AUTO START
-// $start.click();
-
-// Invoke after game started Manually
-$('#eatButton').on('click', gamePlay.eat__gokuHungerLevel);
-$('#sleepButton').on('click', gamePlay.eat__gokuSleepLevel);
-$('#playButton').on('click', gamePlay.eat__gokuBoredomLevel);
+$start.click();
 
 
 
 
 
-
-
-
-
-
-
-
-
-    // Moved code to HTML: Refactor on Tues, 9/28
-
-    // addHealthLevelsAndButtons(event){
-    //     console.log('Add Health Levels');
-    //     $('#row__buttons').append(`
-    //         <div class='row'>
-    //           <div class="col">
-    //               <h5 id="hungerLevel">Hunger: ${goku.hungerLevel}</h5>
-    //               <button type="button" class="btn btn-primary" id='eatButton'>Eat</button>
-    //           </div>
-    //           <div class="col">
-    //               <h5 id="sleepLevel">Sleepiness: ${goku.sleepLevel}</h5>
-    //               <button type="button" class="btn btn-success" id='sleepButton'>Sleep</button>
-    //           </div>
-    //           <div class="col">
-    //               <h5 id="boredomLevel"></h5>
-    //               <button type="button" class="btn btn-danger" id='playButton'>Play</button>
-    //           </div>
-    //         </div>`
-    //     );
-    // },
+/* === POKE-A-Square: THIS === */
+// FIXME Combined starter code
+// Poke-a-square: $button.click(game.start.bind(game));
+// $start.click(gameInitiate.gameStart) // Type Error: NOT A FUNCTION

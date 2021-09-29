@@ -30,6 +30,7 @@ div.container {
     border: 2px solid goldenrod;
     border-radius: 3%;
     overflow: hidden;
+    max-width: 600px;
     /* padding: 20px;   */
     margin-bottom: 20px;  
 }
