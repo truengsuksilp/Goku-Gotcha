@@ -15,7 +15,7 @@ body {
 
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-h2, h4, p, input { font-family: 'Inter', sans-serif; color: white;}
+h2, h4, h6, p, input { font-family: 'Inter', sans-serif; color: white;}
 
 h4 { color: white; }
 
@@ -107,8 +107,12 @@ input {
     background-color: white;
 }
 
-/* Test: Opacity vs. Background
 #avatar {
-    opacity: 0.5;
-} */
+    width: 300px;
+    /* min-width: 250px;
+    max-width: 300px; */
+}
 
+#avatarAge {
+    margin-left: 10px;
+}

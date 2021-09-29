@@ -1,6 +1,9 @@
 console.log('[app.js] Loaded');
 // $('#gameOverModal').modal('show');
 
+/* === LEARNINGS === */
+// Target with ID when possible: Ran twice because there were two red buttons as .btn.btn-danger (start & play);
+// Refactoring is error prone: Don't try to collapse into 1 line (e.g., removed eventListeners on other buttons)
 
 
 /* === === Approach: Use Objects and Functions === === */
@@ -9,7 +12,7 @@ console.log('[app.js] Loaded');
 /* === Variables: Global === */
 
 /* === Dom Elements: Landing Page  === */
-const $start = $('.btn.btn-danger');
+const $start = $('#startButton');        
 const $restart = $('#restartButton');
 const $avatar = $('img');
 const $col__gameDescription = $('#col__gameDescription');
@@ -54,6 +57,22 @@ const goku = {
         stage4: 20,
         stage5: 25,
     },
+    seiyanStage:{
+        stage0: `Clueless Baby Seiyan, `,
+        stage1: `Curious Toddler Seiyan, `,
+        stage2: `Clueless Seiyan, `,
+        stage3: `Training Seiyan, `,
+        stage4: `Transforming..., `,
+        stage5: `Super Seiyan !!!, `,
+    },
+    seiyanStageDesc: {
+        stage0: `You're clueless baby Seiyan`,
+        stage1: `You're discovering dragonballs.. but you're still a clueless baby Seiyan`,
+        stage2: `You have the power in your, but you're still lost`,
+        stage3: `You're doing coding push-ups`,
+        stage4: `You're gathering power and transforming into Super Seiyan....`,
+        stage5: `You're a Super Seiyan!!!`,
+    },
     avatarImg: {
         // stage0: Clueless, 
         // stage1: Has a dragonball, 
@@ -94,13 +113,15 @@ const gameInitiate = {
         goku.name = $('input').val();
 
         if($('input').val() !== ''){
-            $('#avatarName').text(`Name: ${goku.name}`);
+            $('#avatarName').text(`${goku.name}`);
         } else {
-            $('#avatarName').text(`Name: ${goku.nameDefault}`);
+            $('#avatarName').text(`${goku.nameDefault}`);
         }
 
         $('input').addClass('invisible');
-        $('#row__avatarAge').append(`<h4 id="avatarAge"></h4>`);
+        $('#row__avatarAge').append(`<h6 id="seiyanStage">${goku.seiyanStage.stage0}</h6>`);
+        $('#row__avatarAge').append(`<h6 id="avatarAge"></h6>`);
+
     },
 
     removeStartButton(event) {
@@ -132,34 +153,35 @@ const gameFeed = {
         this.eat__gokuHungerLevel();
         this.sleep__gokuSleepLevel();
         this.play__gokuBoredomLevel();
+        console.log('Game Feed Initiated: Start Feeding Goku');
     },
 
     eat__gokuHungerLevel(event) {
-        $hungerLevel.text(`Hunger: ${goku.hungerLevel}`);
-
-        if(goku.aging === true){
+        if(goku.aging === true && goku.hungerLevel >=0 ){
             goku.hungerLevel--
             console.log('Goku eats');
+        } else if(goku.hungerLevel < 0) {
+            prompt("You overate.  \n Promise me to not overeat", "I solemly swear to not overeat");
         };
+        
+        $hungerLevel.text(`Hunger: ${goku.hungerLevel}`);
     },
 
-    sleep__gokuSleepLevel(event) {
-        $sleepLevel.text(`Sleepiness: ${goku.sleepLevel}`);
-        
-        if(goku.aging === true){
+    sleep__gokuSleepLevel(event) {    
+        if(goku.aging === true && goku.sleepLevel >=0 ){
             goku.sleepLevel--
             console.log('Goku sleeps');
         };
+
+        $sleepLevel.text(`Sleepiness: ${goku.sleepLevel}`);
     },
 
-    play__gokuBoredomLevel(event) {
-        $boredomLevel.text(`Sleepiness: ${goku.boredomLevel}`);
-        
-        if(goku.aging === true){
+    play__gokuBoredomLevel(event) {    
+        if(goku.aging === true && goku.boredomLevel >=0 ){
             goku.boredomLevel--
             console.log('Goku plays');
         };
-        
+        $boredomLevel.text(`Sleepiness: ${goku.boredomLevel}`);
     },
 }
 
@@ -193,36 +215,48 @@ const gameAge = {
         if( goku.age < goku.ageCutoff.stage1
           ){
             $avatar.attr('src', goku.avatarImg.stage0);
+            $('#seiyanStage').text(`${goku.seiyanStage.stage0}`)
         } else if(
             goku.age >= goku.ageCutoff.stage1 &&
             goku.age < goku.ageCutoff.stage2
           ){
             $avatar.attr('src', goku.avatarImg.stage1);
+            $('#seiyanStage').text(`${goku.seiyanStage.stage1}`)
         } else if (
             goku.age >= goku.ageCutoff.stage2 && 
             goku.age < goku.ageCutoff.stage3
           ){
             $avatar.attr('src', goku.avatarImg.stage2);
+            $('#seiyanStage').text(`${goku.seiyanStage.stage2}`)
         } else if (
             goku.age >= goku.ageCutoff.stage3 && 
             goku.age < goku.ageCutoff.stage4
           ){
             $avatar.attr('src', goku.avatarImg.stage3);
+            $('#seiyanStage').text(`${goku.seiyanStage.stage3}`)
         } else if (
             goku.age >= goku.ageCutoff.stage4 && 
             goku.age < goku.ageCutoff.stage5
           ){
             $avatar.attr('src', goku.avatarImg.stage4);
+            $('#seiyanStage').text(`${goku.seiyanStage.stage4}`)
         } else if (
             goku.age > goku.ageCutoff.stage5
           ){
             $avatar.attr('src', goku.avatarImg.stage5);
+            $('#seiyanStage').text(`${goku.seiyanStage.stage5}`)
         };
         
     },
 
     healthLevelIncrease(){
-        if(goku.hungerLevel <= 10 && goku.alive === true){
+        if(
+            goku.hungerLevel <= 10 && 
+            goku.sleepLevel <= 10 &&
+            goku.hungerLevel <= 10 &&
+            goku.alive === true
+
+            ){
             goku.hungerLevel++;
             goku.sleepLevel++;
             goku.boredomLevel++
@@ -250,9 +284,13 @@ const gameAge = {
 /* === Event Listeners === */
 
 $start.click(gameInitiate.gameStart.bind(gameInitiate));
-$start.click(gameFeed.gameFeedInitiation.bind(gameFeed));
+$eatButton.click(gameFeed.eat__gokuHungerLevel);
+$sleepButton.click(gameFeed.sleep__gokuSleepLevel);
+$playButton.click(gameFeed.play__gokuBoredomLevel);
 $start.click(gameAge.startAging.bind(gameAge));
 
+
+$restart.on('click', (event) => location.reload());
 
 /* === Invoked Functions === */
 
