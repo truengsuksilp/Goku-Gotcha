@@ -18,6 +18,8 @@
 
 </head>
 <body>
+    // ANCHOR div.container#'nameAge'
+    <!-- add -->
     <div class="container" id='game_console'>
         <div class="row" id='row__avatar'>
             <div class="col" id='col__avatar'>
@@ -44,10 +46,26 @@
                 </ul>
             </div>
         </div>
-        <div class="container" id="game_buttons">
+        <div class="container" id="container__startButtons">
             <div class="row" id='row__buttons'>
                 <div class="col" id='col__startButton'>
                     <button type="button" class="btn btn-danger" id='startButton'>Start !!</button>
+                </div>
+            </div>
+        </div>
+        <div class="container invisible" id="container__gameButtons">
+            <div class="row" id='row__buttons'>
+                <div class="col" id='col__eatButton'>
+                    <h5 id="hungerLevel">Hunger: </h5>
+                    <button type="button" class="btn btn-primary" id='eatButton'>Eat</button>
+                </div>
+                <div class="col" id='col__sleepButton'>
+                    <h5 id="sleepLevel">Sleepiness: </h5>
+                    <button type="button" class="btn btn-success" id='sleepButton'>Sleep</button>
+                </div>
+                <div class="col" id='col__playButton'>
+                    <h5 id="boredomLevel">Boredom: </h5>
+                    <button type="button" class="btn btn-danger" id='playButton'>Play</button>
                 </div>
             </div>
         </div>
@@ -55,13 +73,3 @@
 </body>
 </html>
 
-
-<!-- <div class="col">
-    <button type="button" class="btn btn-primary">Eat</button>
-</div>
-<div class="col">
-    <button type="button" class="btn btn-primary">Sleep</button>
-</div>
-<div class="col">
-    <button type="button" class="btn btn-primary">Play</button>
-</div> -->

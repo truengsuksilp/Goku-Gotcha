@@ -14,10 +14,14 @@ const $col__startButton = $('#col__startButton');
 const $row__avatar = $('#row__avatar');
 
 /* === Dom Elements: Game Page  === */
-// let $gameDOM.eatButton = $('#eatButton');
-// let $gameDOM.sleepButton = $('#sleepButton');
-// let $gameDOM.playButton = $('playButton');
-// let $gameDOM.hungerLevel = $('#hungerLevel');
+const $container__startButtons = $('#container__startButtons');
+const $container__gameButtons = $('#container__gameButtons');
+const $eatButton = $('#eatButton');
+const $sleepButton = $('#sleepButton');
+const $playButton = $('#playButton');
+const $hungerLevel = $('#hungerLevel');
+const $sleepLevel = $('#sleepLevel');
+const $boredomLevel = $('#boredomLevel')
 
 // FIXME Cannot use $rol__buttons with function addHealthButtons(){}
 const $rol__buttons = $('#row__buttons');
@@ -40,38 +44,31 @@ const gameInitiate = {
         // $avatar.remove();
         $avatar.attr('src', goku.avatarStage1)
     },
+
     removeStartButton(event){
         console.log('Removed Start Button');
-        $col__startButton.remove();
+        $container__startButtons.css('display', 'none');
     },
 
     removeGameDesc(event){
         console.log('Removed Game Description');
         $col__gameDescription.remove();
     },
-    
-    addHealthLevelsAndButtons(event){
+ 
+    addHealthButtons(event){
+         console.log('Add Health Buttons');
+         $container__gameButtons.removeClass('invisible');
+    },
+
+    addHealthLevels(event){
         console.log('Add Health Levels');
-        $('#row__buttons').append(`
-            <div class='row'>
-              <div class="col">
-                  <h5 id="hungerLevel">Hunger: ${goku.hungerLevel}</h5>
-                  <button type="button" class="btn btn-primary" id='eatButton'>Eat</button>
-              </div>
-              <div class="col">
-                  <h5 id="sleepLevel">Sleepiness: ${goku.sleepLevel}</h5>
-                  <button type="button" class="btn btn-success" id='sleepButton'>Sleep</button>
-              </div>
-              <div class="col">
-                  <h5 id="boredomLevel">Boredom: ${goku.boredomLevel}</h5>
-                  <button type="button" class="btn btn-danger" id='playButton'>Play</button>
-              </div>
-            </div>`
-        );
+        $hungerLevel.text(`Hunger: ${goku.hungerLevel}`);
+        $sleepLevel.text(`Sleepiness: ${goku.sleepLevel}`);
+        $boredomLevel.text(`Boredom: ${goku.boredomLevel}`);
     },
 
     addNameAge(event){
-        console.log('Add Health Buttons');
+        console.log('Add Name & Age');
         $('body').prepend(`
             <div class='container'>
                 <div class='row'>
@@ -128,14 +125,11 @@ const avatarAgeAndEvolve = {
 
 $start.on('click', gameInitiate.updateToAvatar1);
 $start.on('click', gameInitiate.removeStartButton);
-$start.on('click', gameInitiate.addHealthLevelsAndButtons);
+$start.on('click', gameInitiate.addHealthButtons);
+$start.on('click', gameInitiate.addHealthLevels);
 $start.on('click', gameInitiate.addNameAge);
-
-$start.on('click', avatarAgeAndEvolve.startTimer());
-
-// FIXME Remove description does not collapse
 $start.on('click', gameInitiate.removeGameDesc);
-
+$start.on('click', avatarAgeAndEvolve.startTimer());
 
 /* === Invoked Functions === */
 
@@ -146,3 +140,37 @@ $start.click();
 $('#eatButton').on('click', gamePlay.eat__gokuHungerLevel);
 $('#sleepButton').on('click', gamePlay.eat__gokuSleepLevel);
 $('#playButton').on('click', gamePlay.eat__gokuBoredomLevel);
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Moved code to HTML: Refactor on Tues, 9/28
+
+    // addHealthLevelsAndButtons(event){
+    //     console.log('Add Health Levels');
+    //     $('#row__buttons').append(`
+    //         <div class='row'>
+    //           <div class="col">
+    //               <h5 id="hungerLevel">Hunger: ${goku.hungerLevel}</h5>
+    //               <button type="button" class="btn btn-primary" id='eatButton'>Eat</button>
+    //           </div>
+    //           <div class="col">
+    //               <h5 id="sleepLevel">Sleepiness: ${goku.sleepLevel}</h5>
+    //               <button type="button" class="btn btn-success" id='sleepButton'>Sleep</button>
+    //           </div>
+    //           <div class="col">
+    //               <h5 id="boredomLevel"></h5>
+    //               <button type="button" class="btn btn-danger" id='playButton'>Play</button>
+    //           </div>
+    //         </div>`
+    //     );
+    // },

@@ -34,7 +34,7 @@ span { color: red; }
 
 
 div.container {
-    border: 5px solid goldenrod;
+    border: 2px solid goldenrod;
     border-radius: 3%;
     overflow: hidden;
     /* padding: 20px;   */
@@ -62,17 +62,13 @@ div.col {
 }
 
 #row__avatar {
-    justify: center;
+    justify-content: center;
 }
 
 #col__avatar {
     display: flex;
     min-width: 300px;
     /* max-width: 400px; */ -- this gets it to center
-}
-#col__playButton {
-    display: flex;
-    justify-content: flex-start;
 }
 
 #startButton{
@@ -81,5 +77,15 @@ div.col {
 }
 
 #eatButton, #sleepButton, #playButton {
+    /* display: none; */
     min-width: 100px;
+    align-items: center;
 }
+
+#container__gameButtons {
+    /* display: flex; */
+}
+
+.invisible {
+    visibility: hidden;
+  }
