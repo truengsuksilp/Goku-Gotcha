@@ -17,8 +17,8 @@ console.log('[app.js] Loaded');
         // Chrome Dev Tool | element: remove or update properties e.g., background-color, display
         // e.g., bind(${object}) --> bind(this)
     // JS: Refactoring is error prone.  Don't try to do too much
-        // Started with functions outside an object
-        // Refactor by putting functions into objects, and call methods with one method ( startGame(event), startFeed(event) )
+        // Start: Wrote functions outside an object
+        // Refactor: Put functions into objects, and call methods with one method ( startGame(event), startFeed(event) )
         // Attempt: Tried to collapse into 1 line and removed eventListeners on other buttons
         // Final: 5 lines
     // JS: Timer -- Use it to invoke loops (e.g., evolve)
@@ -26,7 +26,20 @@ console.log('[app.js] Loaded');
         // Context 2: Create method timerAge(){ //--code block with this--// }
         // Before: this.timerAge = setInterval (agingFunction, 1000ms)  // Increase age every 1000ms
         // After: this.timerAge = setInterval (ageAndEvolve, 1000ms)    // Add 1 conditional to run every 1000ms, check age & change img
+    // JS & HTML: Visible AND invisible components to keep everything in HTML, so it's easy to prototype and target with jQuery alias 
+        // Former approach: Start button, remove start button, add 3 buttons
+        // New approach: Start buttons + 3 buttons (.invisible), CSS: visibility: hidden, JS: remove class
+    
+
+/* ==== Tips & Syntax notes === */
+    // JS: alert() sucks!! ---> Use prompt, so you can cancel out
     // JS: Syntax wat -- Backticks (``) ignores spaces 
+    // CSS: Use display: none
+    // Bootstrap & CSS: Hide and Show
+        // Use class .invisible and .removeClass('invisible'): https://getbootstrap.com/docs/4.1/utilities/visibility/
+        // Usual doesn't work Display: none -> display: flex (See Chrome Dev Tool Elements > Styles --> change to display: Flex)
+    // Bootstrap: KISS - modal-title, Content, Blue button, Grey button
+
 
 /* === === Approach: Use Objects and Functions === === */
 
@@ -272,10 +285,11 @@ const gameAge = {
 
     healthLevelIncrease(){
         if(
-            goku.hungerLevel <= 10 && 
-            goku.sleepLevel <= 10 &&
-            goku.hungerLevel <= 10 &&
-            goku.alive === true
+            goku.hungerLevel < 10 && 
+            goku.sleepLevel < 10 &&
+            goku.hungerLevel < 10 &&
+            goku.alive === true &&
+            goku.age < 100
 
             ){
             goku.hungerLevel++;
@@ -305,12 +319,10 @@ const gameAge = {
 /* === Event Listeners === */
 
 $start.click(gameInitiate.gameStart.bind(gameInitiate));
+$start.click(gameAge.startAging.bind(gameAge));
 $eatButton.click(gameFeed.eat__gokuHungerLevel);
 $sleepButton.click(gameFeed.sleep__gokuSleepLevel);
 $playButton.click(gameFeed.play__gokuBoredomLevel);
-$start.click(gameAge.startAging.bind(gameAge));
-
-
 $restart.on('click', (event) => location.reload());
 
 /* === Invoked Functions === */
