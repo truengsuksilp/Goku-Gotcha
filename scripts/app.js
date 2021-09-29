@@ -1,13 +1,34 @@
 console.log('[app.js] Loaded');
-// $('#gameOverModal').modal('show');
+    // $('#gameOverModal').modal('show');
+    // clearInterval(timerAge)
+
+/* === Questions === */
+    // Modals: How to target the background of the modal?
+    // How to create a global variable from an object method?  Use Case: Creating alias for DOM elements
 
 /* === LEARNINGS === */
-// Target with ID when possible: Ran twice because there were two red buttons as .btn.btn-danger (start & play);
-// Refactoring is error prone: Don't try to collapse into 1 line (e.g., removed eventListeners on other buttons)
-
+    // jQuery: Cannot target a DOM element in the JS code, because it's created
+    // CSS: Target with ID when possible (e.g., define alias for $start as a class for red buttons )
+        // Lazy and define alias for "Start !" red button as $start
+        // Later added a red button for "Play" 
+        // Added code to click $start and code ran twice.. ($start.click)
+    // CSS & Bootstrap: Wildcard selector (*) can be a pain with Modal (e.g., background-color: black;)
+    // JS: Pay attention during class!!! 
+        // Chrome Dev Tool | element: remove or update properties e.g., background-color, display
+        // e.g., bind(${object}) --> bind(this)
+    // JS: Refactoring is error prone.  Don't try to do too much
+        // Started with functions outside an object
+        // Refactor by putting functions into objects, and call methods with one method ( startGame(event), startFeed(event) )
+        // Attempt: Tried to collapse into 1 line and removed eventListeners on other buttons
+        // Final: 5 lines
+    // JS: Timer -- Use it to invoke loops (e.g., evolve)
+        // Context 1: Store time in timerAge: null,
+        // Context 2: Create method timerAge(){ //--code block with this--// }
+        // Before: this.timerAge = setInterval (agingFunction, 1000ms)  // Increase age every 1000ms
+        // After: this.timerAge = setInterval (ageAndEvolve, 1000ms)    // Add 1 conditional to run every 1000ms, check age & change img
+    // JS: Syntax wat -- Backticks (``) ignores spaces 
 
 /* === === Approach: Use Objects and Functions === === */
-
 
 /* === Variables: Global === */
 
@@ -187,7 +208,7 @@ const gameFeed = {
 
 const gameAge = {
 
-    timerAge: null,  // clearInterval(timerAge)
+    timerAge: null,
     timerHealth: null, 
 
     startAging(event){
@@ -206,7 +227,7 @@ const gameAge = {
 
     ageAndEvolve(){
         // Age if alive
-        if(goku.alive === true){
+        if(goku.alive === true && goku.age <= 100){
             goku.age++;
             $('#avatarAge').text(`Age: ${goku.age}`)
         };
@@ -296,12 +317,4 @@ $restart.on('click', (event) => location.reload());
 
 // AUTO START
 // $start.click();
-
-
-
-
-
-/* === POKE-A-Square: THIS === */
-// FIXME Combined starter code
 // Poke-a-square: $button.click(game.start.bind(game));
-// $start.click(gameInitiate.gameStart) // Type Error: NOT A FUNCTION
