@@ -3,7 +3,7 @@
 * {
     box-sizing: border-box;
     background-color: black;
-    border: 1px solid rebeccapurple;
+    /* border: 1px solid rebeccapurple; */
 }
 
 body {
@@ -15,20 +15,13 @@ body {
 
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-h2, h4, p { 
-    font-family: 'Inter', sans-serif;
-    color: white;
-}
+h2, h4, p, input { font-family: 'Inter', sans-serif; color: white;}
 
-h4 {
-    color: white;
-}
+h4 { color: white; }
 
 p, li {font-size: 0.8rem;}
 
 span { color: red; }
-
-
 
 /* === Component Specific === */
 
@@ -48,30 +41,43 @@ div.row {
     min-width: 500px;
 }
 
-/* div.container.game {
-    margin-top: 20px;
-} */
-
 div.col {
     color: white;
-    /* padding: 15px; */
     padding-left: 20px;
     overflow: hidden;
-    /* display: flex;
-    justify-content: center; */
+}
+
+#avatarName {
+    padding-top: 5px;
+    padding-right: 15px;
+}
+
+input {
+    min-width: 300px;
+    border: 0.5px solid whitesmoke;
+    border-radius: 5%;
+    padding-left: 15px;
 }
 
 #row__avatar {
+    display: flex;
     justify-content: center;
 }
 
 #col__avatar {
     display: flex;
+    justify-content: center;
     min-width: 300px;
-    /* max-width: 400px; */ -- this gets it to center
+    /* max-width: 400px; -- this gets it to center */ 
+}
+
+#col__startButton {
+    display: flex;
+    justify-content: center;
 }
 
 #startButton{
+    width: 100vh;
     min-width: 500px;
     margin: 20px;
 }
@@ -80,10 +86,6 @@ div.col {
     /* display: none; */
     min-width: 100px;
     align-items: center;
-}
-
-#container__gameButtons {
-    /* display: flex; */
 }
 
 .invisible {

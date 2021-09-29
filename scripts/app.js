@@ -14,6 +14,8 @@ const $col__startButton = $('#col__startButton');
 const $row__avatar = $('#row__avatar');
 
 /* === Dom Elements: Game Page  === */
+const $avatarName = $('#avatarName');
+const $avatarAge = $('#avatarAge');
 const $container__startButtons = $('#container__startButtons');
 const $container__gameButtons = $('#container__gameButtons');
 const $eatButton = $('#eatButton');
@@ -23,26 +25,59 @@ const $hungerLevel = $('#hungerLevel');
 const $sleepLevel = $('#sleepLevel');
 const $boredomLevel = $('#boredomLevel')
 
-// FIXME Cannot use $rol__buttons with function addHealthButtons(){}
-const $rol__buttons = $('#row__buttons');
-
 
 /* === Variables: Objects with Methods === */
 
 const goku = {
-    name: 'Goku',
+    name: null, // 
+    nameDefault: 'Goku',
     age: 0,
     hungerLevel: 5,
     sleepLevel: 5,
     boredomLevel: 5,
-    avatarStage1:'https://media.giphy.com/media/u49rMyXHrTUw8/giphy.gif?cid=790b76111601a3644bfa79fb8520ea1cd99db6869145ae3d&rid=giphy.gif&ct=g',
+    ageStageCutoff: {
+        stage0: 0,
+        stage1: 5,
+        stage2: 10,
+        stage3: 15,
+        stage4: 20,
+    },
+    avatarImg: {
+        // stage0: Clueless, stage1: Has a dragonball, stage2: Lost goku adult, 
+        // stage3: Training Goku Adult, stage4: Turning Seiyan, stage5: Super Saiyan
+        stage0: 'https://media.giphy.com/media/u49rMyXHrTUw8/giphy.gif?cid=790b76111601a3644bfa79fb8520ea1cd99db6869145ae3d&rid=giphy.gif&ct=g',
+        stage1: 'https://media.giphy.com/media/88kDwXuvzdwHK/giphy.gif?cid=790b7611378ee8712358862eba44e6f8e70b65fba2ca0437&rid=giphy.gif&ct=g',
+        stage2: 'https://media.giphy.com/media/13mfssn73An6De/giphy.gif?cid=ecf05e47onbo719k8c3eqj90d2cvbped2zteiwy8i9ooxr8y&rid=giphy.gif&ct=g',
+        stage3: 'https://media.giphy.com/media/lPwZcFRMGOFPO/giphy.gif?cid=ecf05e47w312ugxoztulgj8jc35tc48e52p2iiyk0n94b0b4&rid=giphy.gif&ct=g',
+        stage4: 'https://media.giphy.com/media/C7IxyUB2uXew0/giphy.gif?cid=ecf05e47ouwz87s9vfeepewqjcl61pe1yfn6iga4dep8a2el&rid=giphy.gif&ct=g',
+        stage5: 'https://media.giphy.com/media/B6SyssSlTgPXq/giphy.gif?cid=ecf05e47idy9ssm5xkenkb8b56cyjddtr4srrm56e72cn5sv&rid=giphy.gif&ct=g',
+    },
 }
 
 const gameInitiate = {
+    // gameStart(event).
+
     updateToAvatar1 (event){
         console.log('Update avatar');
         // $avatar.remove();
-        $avatar.attr('src', goku.avatarStage1)
+        $avatar.attr('src', goku.avatarImg.stage0)
+    },
+
+    addNameAge(event){
+        console.log('Add Name & Age');
+
+        goku.name = $('input').val();
+
+        if($('input').val() !== ''){
+            $('#avatarName').text(`Name: ${goku.name}`);
+        } else {
+            $('#avatarName').text(`Name: ${goku.nameDefault}`);
+        }
+
+        $('input').addClass('invisible');
+        
+        // $('#row__avatarAge').append(`<h4 id="avatarAge">Age: ${goku.age}</h4>`);
+        $('#row__avatarAge').append(`<h4 id="avatarAge"></h4>`);
     },
 
     removeStartButton(event){
@@ -66,20 +101,6 @@ const gameInitiate = {
         $sleepLevel.text(`Sleepiness: ${goku.sleepLevel}`);
         $boredomLevel.text(`Boredom: ${goku.boredomLevel}`);
     },
-
-    addNameAge(event){
-        console.log('Add Name & Age');
-        $('body').prepend(`
-            <div class='container'>
-                <div class='row'>
-                  <h4 id='avatarName'>Name: ${goku.name}</h4>
-                </div>  
-                <div class='row'>
-                  <h4 id='avatarAge'>Age: ${goku.age}</h4>
-                </div>  
-            </div>`
-        );
-    }
 }
 
 const gamePlay = {
@@ -108,10 +129,15 @@ const avatarAgeAndEvolve = {
         goku.age++;
         $('#avatarAge').text(`Age: ${goku.age}`)
     },
+
     startTimer(){
         setInterval(this.agingFunction, 3000)
-    }
+    },
 
+    // FIXME While Loop fails... does not read goku.age
+    // while ( goku.age > 10 ){
+    //     $avatar.attr('src', goku.avatarImg.stage1)
+    // }
 
 }
 
@@ -123,12 +149,15 @@ const avatarAgeAndEvolve = {
 
 /* === Event Listeners === */
 
+// Initiate
+$start.on('click', gameInitiate.addNameAge);
 $start.on('click', gameInitiate.updateToAvatar1);
+$start.on('click', gameInitiate.removeGameDesc);
 $start.on('click', gameInitiate.removeStartButton);
 $start.on('click', gameInitiate.addHealthButtons);
 $start.on('click', gameInitiate.addHealthLevels);
-$start.on('click', gameInitiate.addNameAge);
-$start.on('click', gameInitiate.removeGameDesc);
+
+// Timer
 $start.on('click', avatarAgeAndEvolve.startTimer());
 
 /* === Invoked Functions === */
