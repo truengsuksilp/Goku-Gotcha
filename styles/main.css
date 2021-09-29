@@ -68,6 +68,7 @@ input {
     display: flex;
     justify-content: center;
     min-width: 300px;
+    /* background-color: red; */
     /* max-width: 400px; -- this gets it to center */ 
 }
 
@@ -91,3 +92,22 @@ input {
 .invisible {
     visibility: hidden;
   }
+
+
+/* FIXME: Cannot target parent background without targeting children
+/* #gameOverModal {
+    opacity: 0.1;
+    background-color: white;
+} 
+*/
+
+.modal-dialog, .modal-content, .modal-header, .modal-body, .modal-footer, .modal-title {
+    opacity: 1;
+    background-color: white;
+}
+
+/* Test: Opacity vs. Background
+#avatar {
+    opacity: 0.5;
+} */
+
