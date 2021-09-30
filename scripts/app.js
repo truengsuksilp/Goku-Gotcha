@@ -14,7 +14,8 @@ $('#container__gameControls').hide();
 /* === Variables: Global === */
 
 /* === Dom Elements: Landing Page  === */
-const $start = $('#startButton');        
+const $start = $('#startButton'); 
+const $coderMode = $('#coderModeButton')       
 const $restart = $('#restartButton');
 
 const $col__gameDescription = $('#col__gameDescription');
@@ -27,7 +28,6 @@ const $gameDesc__ul = $('#gameDesc__ul');
 
 const $avatar = $('#avatar');
 const $col__avatar = $('#col__avatar');
-const $col__startButton = $('#col__startButton');
 const $row__avatar = $('#row__avatar');
 
 /* === Dom Elements: Game Page  === */
@@ -80,10 +80,11 @@ const goku = {
     alive: true,
     aging: false,
     isPaused: false,
+    coderMode: false,
 
-    // Goku Aging Values
-    healthLevelUp: 3*10000,
-    ageLevelUp: 1*1000,
+    // Goku Config: Aging Pace
+    healthLevelUp: 1.5*1000,
+    ageLevelUp: 1.5*1000,
     ageCutoff: {
         stage0: 0,
         stage1: 5,
@@ -202,30 +203,55 @@ const gameFeed = {
 
     eat__gokuHungerLevel(event) {
         if(goku.aging === true && goku.hungerLevel >=0 ){
-            goku.hungerLevel--
+            if(goku.coderMode === true){
+                goku.hungerLevel++
+                $hungerLevel.text(`HTML: ${goku.hungerLevel}`);
+            } else {
+                goku.hungerLevel--
+                $hungerLevel.text(`Hunger: ${goku.hungerLevel}`);
+            }
+            
             console.log('Goku eats');
         } else if(goku.hungerLevel < 0) {
             prompt("You overate.  \n Promise me to not overeat", "I solemly swear to not overeat");
         };
         
-        $hungerLevel.text(`Hunger: ${goku.hungerLevel}`);
+        // $hungerLevel.text(`Hunger: ${goku.hungerLevel}`);
     },
 
     sleep__gokuSleepLevel(event) {    
         if(goku.aging === true && goku.sleepLevel >=0 ){
-            goku.sleepLevel--
+            if(goku.coderMode === true){
+                goku.sleepLevel++
+                $sleepLevel.text(`CSS: ${goku.sleepLevel}`);
+            } else {
+                goku.sleepLevel--
+                $sleepLevel.text(`Sleepiness: ${goku.sleepLevel}`);
+            }
+            
             console.log('Goku sleeps');
         };
 
-        $sleepLevel.text(`Sleepiness: ${goku.sleepLevel}`);
+        // $sleepLevel.text(`Sleepiness: ${goku.sleepLevel}`);
     },
 
     play__gokuBoredomLevel(event) {    
         if(goku.aging === true && goku.boredomLevel >=0 ){
-            goku.boredomLevel--
+            if(goku.coderMode === true){
+                goku.boredomLevel++
+                $boredomLevel.text(`JS: ${goku.boredomLevel}`);
+
+                // ANCHOR Get Goku to level up by doing JS
+                goku.age++
+            } else {
+                goku.boredomLevel--
+                $boredomLevel.text(`Boredom: ${goku.boredomLevel}`);
+            }
+            
             console.log('Goku plays');
         };
-        $boredomLevel.text(`Sleepiness: ${goku.boredomLevel}`);
+        
+        // $boredomLevel.text(`Boredom: ${goku.boredomLevel}`);
     },
 }
 
@@ -317,20 +343,38 @@ const gameAge = {
     },
 
     healthLevelIncrease(){
-        if(
+        if( 
+            goku.coderMode === false &&
             goku.hungerLevel < 10 && 
             goku.sleepLevel < 10 &&
             goku.hungerLevel < 10 &&
             goku.alive === true &&
             goku.age < 100
-
             ){
             goku.hungerLevel++;
             goku.sleepLevel++;
-            goku.boredomLevel++
-            $hungerLevel.text(`Hunger: ${goku.hungerLevel}`)
-            $sleepLevel.text(`Sleepiness: ${goku.sleepLevel}`)
-            $boredomLevel.text(`Boredom: ${goku.boredomLevel}`)
+            goku.boredomLevel++;
+            $hungerLevel.text(`Hunger: ${goku.hungerLevel}`);
+            $sleepLevel.text(`Sleepiness: ${goku.sleepLevel}`);
+            $boredomLevel.text(`Boredom: ${goku.boredomLevel}`);
+        } else if (
+            goku.coderMode === true &&
+            goku.hungerLevel > 0 && 
+            goku.sleepLevel > 0 &&
+            goku.hungerLevel > 0 &&
+            goku.alive === true &&
+            goku.age < 100
+            ){
+            goku.hungerLevel--;
+            goku.sleepLevel--;
+            goku.boredomLevel--;
+            $hungerLevel.text(`HTML: ${goku.hungerLevel}`);
+            $sleepLevel.text(`CSS: ${goku.sleepLevel}`);
+            $boredomLevel.text(`JS: ${goku.boredomLevel}`);
+        } else if (
+            goku.coderMode === true
+        ){
+            console.log('Coder never dies');
         } else {
             gameAge.gameOver();
         };
@@ -349,11 +393,11 @@ const gameAge = {
 
 }
 
+
 /* === Event Functions: Controls === */
 
 /* === Event Listeners === */
 
-// Play music
 $start.click(gameInitiate.gameStart.bind(gameInitiate));
 $start.click(gameAge.startAging.bind(gameAge));
 $start.click((event) => $('#container__gameControls').show());
@@ -388,19 +432,17 @@ $restart.on('click', (event) => location.reload());
 
 $('#closeButtonMasterRoshi').on('click', (event) => $resumeButton.click());
 
+// Coder Mode
+$coderMode.click((event) => goku.coderMode = true);
+$coderMode.click((event) => $start.click());
+$coderMode.click((event) => $hungerLevel.text(`HTML: ${goku.hungerLevel}`));
+$coderMode.click((event) => $sleepLevel.text(`CS: ${goku.sleepLevel}`));
+$coderMode.click((event) => $boredomLevel.text(`JS: ${goku.boredomLevel}`));
+
+
 /* === Invoked Functions === */
 
 // AUTO START
 // $start.click();
 // $('.playButton.medium').click()
 // Poke-a-square: $button.click(game.start.bind(game));
-
-
-
-
-/* DUMP */
-
-// STOP BUTTON
-// $stopButton.on('click', (event) => clearInterval(gameAge.timerAge))
-// $stopButton.on('click', (event) => clearInterval(gameAge.timerHealth));
-// $stopButton.on('click', (event) => $stopButton.addClass('active'));
