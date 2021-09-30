@@ -1,18 +1,18 @@
 # Project-Zero
 
-### EPIC: Goku-Gotcha, 
-Story of Goku going through GA Bootcamp
+### Epic: Goku-Gotcha - A Story of Goku going through GA Bootcamp
+Goku-Gotcha is a story of Goku leveling up...
+..but there's a "Gotcha" that Goku needs to stay alive by doing "Human Things"
+
+### Design Approach
 - Landing Page: Warms the user up for the game of keeping Goku alive throughout GA Bootcamp
 - Game Console Page: Interactive page to interact with Goku's health levels and show Goku evolves through GA Bootcamp
 
-Goku-Gotcha is a story of Goku leveling up...
-But there's a "Gotcha" that Goku needs to stay alive by doing "Human Things"
-
 ### Wireframes
 Link: https://thanatadruengsuksilp685999.invisionapp.com/freehand/SEI-913---gokugotcha-wireframe-HyCOqwAPW
-- MVP
-- Game V1: Shows Goku evolve like a Digimon
-- Game V2: Add Play / Pause / Force Evolve
+- MVP: Shows Goku Leveling up
+- Game V1: Add Play / Pause / Force Evolve
+- Game V2: Shows Goku evolve like a Digimon
 - Game V3: Add Coding Skills into Game Console page (5 Units of GA)
 
 ### Storyline: 
@@ -50,11 +50,26 @@ Goku dies when you do not do human things and your level of hunger, sleepiness, 
 - Morph your pet at certain ages.
 
 
-##### Approach: Use Objects
+##### Approach: Use Objects and nested methods
 
-/* === Variables  === */
+/* === Variables: n/a  === */
+
 /* === Dom Elements  === */
+- Landing Page
+- Game Console Page
+
 /* === Object & Methods  === */
-/* === Event Functions  === */
+- goku: characteristics and aging config.
+- gameInitation: gameStart method to transition to game page
+- gameFeed: gameFeedInitation method to allow users to interact with health level metrics
+- gameAge: startAging method to get Goku to age, deteriorate, and evolve
+
+/* === Event Functions: n/a  === */
+- Moved to methods
+
 /* === Event Listeners  === */
-/* === Invoked Functions === */
+- Add interactions (clicks to start, eat, sleep, play)
+- Add control buttons (clicks to stop, reload, restart after game over)
+
+/* === Invoked Functions: n/a === */
+- Commented out auto-start for the game's final version
