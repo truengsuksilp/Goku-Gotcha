@@ -1,6 +1,15 @@
-# Project-Zero
+# Project-Zero: Goku-Gotcha
 
-### Epic: Goku-Gotcha - A Story of Goku going through GA Bootcamp
+-----------------------------------------------------
+
+### LEARNINGS
+- **HTML & JS: jQuery**: Build in HTML and use JS to update visibilty later.  So you can prototype faster and it's easy to target by defining jQuery Alias
+- **CSS & JS: jQuery**: Make your targets specific.  Use ID when possible and minimize wildcards (*), so you don't accidentally target new elements with the same class (e.g., buttons)
+- **JS**: Refactoring is error prone.  I tried too too much, deleted some lines and spent hours tracing and debugging
+
+-----------------------------------------------------
+
+### Epic: A Story of Goku going through GA Bootcamp
 Goku-Gotcha is a story of Goku leveling up...
 ..but there's a "Gotcha" that Goku needs to stay alive by doing "Human Things"
 
