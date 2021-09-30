@@ -1,4 +1,6 @@
 console.log('[app.js] Loaded');
+$('#container__gameButtons').hide();
+$('#container__gameControls').hide();
     // $('#gameOverModal').modal('show');
     // clearInterval(timerAge)
 
@@ -178,7 +180,7 @@ const gameInitiate = {
  
     addHealthButtons(event) {
         //  console.log('Add Health Buttons');
-         $container__gameButtons.removeClass('invisible');
+         $container__gameButtons.show();
     },
 
     addHealthLevels(event) {
@@ -274,7 +276,7 @@ const gameAge = {
                 if( goku.age === goku.ageCutoff.stage1){
                     $('#masterRoshiModal').modal('show');
                     $pauseButton.click();
-                    $gameDesc__title.append(`<p>${contentSkills.unitTitles[1]}</p>`);
+                    $gameDesc__title.append(`<p class='unitsGA'>${contentSkills.unitTitles[1]}</p>`);
                 };
             } else if (
                 goku.age >= goku.ageCutoff.stage2 && 
@@ -283,7 +285,7 @@ const gameAge = {
                 $avatar.attr('src', goku.avatarImg.stage2);
                 $('#seiyanStage').text(`${goku.seiyanStage.stage2}`);
                 if( goku.age === goku.ageCutoff.stage2){
-                    $gameDesc__title.append(`<p>${contentSkills.unitTitles[2]}</p>`);
+                    $gameDesc__title.append(`<p class='unitsGA'>${contentSkills.unitTitles[2]}</p>`);
                 };
             } else if (
                 goku.age >= goku.ageCutoff.stage3 && 
@@ -292,7 +294,7 @@ const gameAge = {
                 $avatar.attr('src', goku.avatarImg.stage3);
                 $('#seiyanStage').text(`${goku.seiyanStage.stage3}`);
                 if( goku.age === goku.ageCutoff.stage3){
-                    $gameDesc__title.append(`<p>${contentSkills.unitTitles[3]}</p>`);
+                    $gameDesc__title.append(`<p class='unitsGA'>${contentSkills.unitTitles[3]}</p>`);
                 };
             } else if (
                 goku.age >= goku.ageCutoff.stage4 && 
@@ -300,7 +302,7 @@ const gameAge = {
             ){
                 $avatar.attr('src', goku.avatarImg.stage4);
                 $('#seiyanStage').text(`${goku.seiyanStage.stage4}`);                if( goku.age === goku.ageCutoff.stage4){
-                    $gameDesc__title.append(`<p>${contentSkills.unitTitles[4]}</p>`);
+                    $gameDesc__title.append(`<p class='unitsGA'>${contentSkills.unitTitles[4]}</p>`);
                 };
             } else if (
                 goku.age >= goku.ageCutoff.stage5
@@ -308,7 +310,7 @@ const gameAge = {
                 $avatar.attr('src', goku.avatarImg.stage5);
                 $('#seiyanStage').text(`${goku.seiyanStage.stage5}`);
                 if( goku.age === goku.ageCutoff.stage5){
-                    $gameDesc__title.append(`<p>${contentSkills.unitTitles[5]}</p>`);
+                    $gameDesc__title.append(`<p class='unitsGA'>${contentSkills.unitTitles[5]}</p>`);
                 };
             };
         }
@@ -352,10 +354,9 @@ const gameAge = {
 /* === Event Listeners === */
 
 // Play music
-$start.on('click', (event) => $('.playButton.medium').click());
-
 $start.click(gameInitiate.gameStart.bind(gameInitiate));
 $start.click(gameAge.startAging.bind(gameAge));
+$start.click((event) => $('#container__gameControls').show());
 $eatButton.click(gameFeed.eat__gokuHungerLevel);
 $sleepButton.click(gameFeed.sleep__gokuSleepLevel);
 $playButton.click(gameFeed.play__gokuBoredomLevel);
@@ -375,6 +376,10 @@ $resumeButton.on('click', (event) => $pauseButton.removeClass('active'));
 // $evolveButton.on('click', (event) => goku.isPaused = true);
 $evolveButton.on('click', (event) => $pauseButton.click());
 $evolveButton.on('click', (event) => $avatar.attr('src', goku.avatarImg.stage5))
+$evolveButton.on('click', (event) => $('.unitsGA').remove());
+
+$evolveButton.on('click', (event) => console.log('test'));
+$evolveButton.on('click', (event) => $gameDesc__title.append(`<p>${contentSkills.unitTitles[1]}</p><p>${contentSkills.unitTitles[2]}</p><p>${contentSkills.unitTitles[3]}</p><p>${contentSkills.unitTitles[4]}</p><p>${contentSkills.unitTitles[5]}</p>`));
 
 $reloadButton.on('click', (event) => location.reload());
 $reloadButton.on('click', (event) => $start.click());

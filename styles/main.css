@@ -8,7 +8,7 @@
 
 body {
     background-color: black;
-    margin: 5px 0px;
+    margin: px 0px;
 }
 
 /* === Text styling === */
@@ -17,7 +17,7 @@ body {
 
 h2, h4, h6, p, input { font-family: 'Inter', sans-serif; color: white;}
 
-#gameDesc__title { margin-bottom: 50px; }
+#gameDesc__title { margin-bottom: 20px; }
 
 h4 { color: white; }
 
@@ -29,16 +29,19 @@ span { color: red; }
 
 input { background-color: black; }
 
-/* === Component Specific === */
-
+/* === Main Content === */
 
 div.container {
     border: 2px solid goldenrod;
     border-radius: 3%;
     overflow: hidden;
-    max-width: 600px;
+    max-width: 700px;
     /* padding: 20px;   */
     margin-bottom: 20px;  
+}
+
+#game_console {
+    padding-top: 20px;
 }
 
 div.row {
@@ -59,13 +62,6 @@ div.col {
     padding-right: 15px;
 }
 
-input {
-    min-width: 300px;
-    border: 0.5px solid whitesmoke;
-    border-radius: 5%;
-    padding-left: 15px;
-}
-
 #row__avatar {
     display: flex;
     justify-content: center;
@@ -77,6 +73,10 @@ input {
     min-width: 300px;
     /* background-color: red; */
     /* max-width: 400px; -- this gets it to center */ 
+}
+
+#container__startButtons {
+    margin-top: 25px;
 }
 
 #col__startButton {
@@ -112,16 +112,27 @@ input {
 }
 
 #masterRoshiImg {
-    width: 400px;
+    max-width: 400px;
 }
 
 #avatarAge {
     margin-left: 10px;
 }
 
+/* === INPUT BOX === */
 
+input {
+    min-width: 300px;
+    border: 0.5px solid whitesmoke;
+    border-radius: 5%;
+    padding-left: 15px;
+}
 
-/* Game Controls Below */
+/* === Game Controls === */
+/* #container__gameControls {
+    margin-top: 50px;
+} */
+
 #row__gameControls {
     margin: 10px;
 }
@@ -133,3 +144,4 @@ input {
 .glyphicon {
     background-color: white;
 }
+

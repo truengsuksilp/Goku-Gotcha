@@ -23,7 +23,9 @@
 
 </head>
 <body>
-
+    <div class="container invisible" id='block'>
+                x
+    </div>
     <!-- Game Controls -->
     <div class="container" id='container__gameControls'>
         <div class="d-flex justify-content-start" id='row__gameControls'>
@@ -70,16 +72,15 @@
             <div class="col" id='col__gameDescription'>
                 <h2 id='gameDesc__title'>Game Description</h2>
                 <p class='gameDesc__p' id='gameDesc__p1' >
-                    Goku is leveling up through GA Bootcamp... but there's a "Gotcha".
-                    \n
-                    Goku needs to stay alive
-                    Your job is to keep leveling up through the GA Bootcamp as <span><strong>Goku</strong></span>.
+                    <span><strong>Goku</strong></span> is leveling up through GA Bootcamp... but there's a "Gotcha"... Goku needs to stay alive
+                    <br>
+                    <br>
                 </p>
                 <p class='gameDesc__p' id='gameDesc__p2'>
-                    As you go through your GA Bootcamp, your level of hunger / sleep-deprived / boredom will increase.  Reaching level 10 on these issues and you die.  
+                    GA Bootcamp takes energy.  You will die if your hunger / sleep-deprived / boredom levels reach 10. 
                 </p>
                 <p class='gameDesc__p' id='gameDesc__p3'>
-                    To not die, you must do "human things": 
+                    You must do "Human Things": 
                 </p>
                 <ul id='gameDesc__ul'>
                     <li>Eat</li>
@@ -95,7 +96,7 @@
                 </div>
             </div>
         </div>
-        <div class="container invisible" id="container__gameButtons">
+        <div class="container" id="container__gameButtons">
             <div class="row" id='row__buttons'>
                 <div class="col" id='col__eatButton'>
                     <h5 id="hungerLevel">Hunger: </h5>
