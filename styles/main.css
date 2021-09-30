@@ -62,36 +62,29 @@ div.col {
     padding-right: 15px;
 }
 
-#row__avatar {
-    display: flex;
-    justify-content: center;
-}
-
-#col__avatar {
-    display: flex;
-    justify-content: center;
-    min-width: 300px;
-    /* background-color: red; */
-    /* max-width: 400px; -- this gets it to center */ 
-}
-
 .invisible {
     visibility: hidden;
   }
 
+
+/* Modals */
+
 .modal-dialog, .modal-content, .modal-header, .modal-body, .modal-footer, .modal-title {
     opacity: 1;
-    background-color: white;
+    background-color: rgb(214, 214, 214);
 }
 
-#avatar {
-    width: 300px;
-    /* min-width: 250px;
-    max-width: 300px; */
+.modal-dialog {
+    border-radius: 5%;
+}
+
+.modal-header {
+    border-bottom: 2px solid black;
 }
 
 #masterRoshiImg {
     max-width: 400px;
+    border-radius: 5%;
 }
 
 #avatarAge {
@@ -108,9 +101,6 @@ input {
 }
 
 /* === Game Controls === */
-/* #container__gameControls {
-    margin-top: 50px;
-} */
 
 #row__gameControls {
     margin: 10px;
@@ -124,7 +114,28 @@ input {
     background-color: white;
 }
 
+/* Avatar Images */
+
+#avatar {
+    width: 300px;
+    object-fit: fill;
+    border-radius: 50%;
+    /* min-width: 250px;
+    max-width: 300px; */
+}
+
+#col__avatar {
+    min-width: 300px;
+    border-radius: 5%;
+    /* background-color: red; */
+    /* max-width: 400px; -- this gets it to center */ 
+}
+
 /* Start, Coder Mode, Game Buttons */
+
+#container__gameButtons {
+    margin-top: 25px;
+}
 
 #container__startButtons {
     margin-top: 25px;

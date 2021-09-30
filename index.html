@@ -27,8 +27,8 @@
                 x
     </div>
     <!-- Game Controls -->
-    <div class="container" id='container__gameControls'>
-        <div class="d-flex justify-content-start" id='row__gameControls'>
+    <div class="container invisible" id='container__gameControls'>
+        <div class="row d-flex justify-content-start" id='row__gameControls'>
             <button type="button" class="btn btn-outline-danger btn-sm" id="resumeButton">
                 <i class="fas fa-play"></i> 
                 Play
@@ -63,8 +63,8 @@
     <!-- Avatar & Game Description -->
 
     <div class="container" id='game_console'>
-        <div class="row" id='row__avatar'>
-            <div class="col" id='col__avatar'>
+        <div class="row d-flex justify-content-start" id='row__avatar'>
+            <div class="col d-flex justify-content-start" id='col__avatar'>
                 <img 
                   class="img-fluid" id="avatar" 
                   src="https://media.giphy.com/media/JdyQWFOVo6s5G/giphy.gif?cid=ecf05e47200v8hf0832epj8vg0l4ossb6qnvish73bsoomuq&rid=giphy.gif&ct=g" alt="gokuBoy">
@@ -102,7 +102,7 @@
                 <button type="button" class="btn btn-dark" id='coderModeButton'>Start Coder Mode !!</button>
             </div>
         </div>
-        <div class="container" id="container__gameButtons">
+        <div class="container invisible" id="container__gameButtons">
             <div class="row" id='row__buttons'>
                 <div class="col" id='col__eatButton'>
                     <h5 id="hungerLevel">Hunger: </h5>
@@ -141,7 +141,9 @@
         <h5 class="modal-title" id="gameOverModalLabel">Game Over<h5/>
       </div>
       <div class="modal-body">
-        You died of hunger OR sleepiness OR boredom.  <br>
+        You died of hunger OR sleepiness OR boredom.  
+        <br>
+        <br>
         You failed to enough "Human Things" during the bootcamp.
       </div>
       <div class="modal-footer">

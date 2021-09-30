@@ -1,3 +1,5 @@
+// Brower will not run individual commands... LOL
+
 console.log('[app.js] Loaded');
 $('#container__gameButtons').hide();
 $('#container__gameControls').hide();
@@ -83,7 +85,7 @@ const goku = {
     coderMode: false,
 
     // Goku Config: Aging Pace
-    healthLevelUp: 1.5*1000,
+    healthLevelUp: 3*1000,
     ageLevelUp: 1.5*1000,
     ageCutoff: {
         stage0: 0,
@@ -171,7 +173,6 @@ const gameInitiate = {
         // $col__gameDescription.remove();
     },
 
-    // ANCHOR - Game Desc
     updateGameDesc(event){
         $gameDesc__title.text('Coding Skills');
         $gameDesc__p.remove();
@@ -182,6 +183,7 @@ const gameInitiate = {
     addHealthButtons(event) {
         //  console.log('Add Health Buttons');
          $container__gameButtons.show();
+         $container__gameButtons.removeClass('invisible');
     },
 
     addHealthLevels(event) {
@@ -401,6 +403,7 @@ const gameAge = {
 $start.click(gameInitiate.gameStart.bind(gameInitiate));
 $start.click(gameAge.startAging.bind(gameAge));
 $start.click((event) => $('#container__gameControls').show());
+$start.click((event) => $('#container__gameControls').removeClass('invisible'));
 $eatButton.click(gameFeed.eat__gokuHungerLevel);
 $sleepButton.click(gameFeed.sleep__gokuSleepLevel);
 $playButton.click(gameFeed.play__gokuBoredomLevel);
