@@ -31,7 +31,7 @@ const $boredomLevel = $('#boredomLevel');
 
 /* === Dom Elements: Control Buttons  === */
 const $resumeButton = $('#resumeButton');
-const $stopButton = $('#stopButton');
+const $pauseButton = $('#pauseButton');
 const $reloadButton = $('#reloadButton');
 const $evolveButton = $('#evolveButton');
 
@@ -210,53 +210,51 @@ const gameAge = {
 
     ageAndEvolve(){
         
-        // FIXME: Prevent Aging if game is paused 
-        // if(goku.isPaused === false){
-        //     this.timerAge.preventDefault();
-        // };
+        // ISSUE: Cause load timeout
+        if(goku.isPaused === false){ 
 
-        // Age if alive
-        if(goku.alive === true && goku.age <= 100 && !goku.isPaused){
-            goku.age++;
-            $('#avatarAge').text(`Age: ${goku.age}`)
-        };
+            // Age if alive
+            if(goku.alive === true && goku.age <= 100 && !goku.isPaused){
+                goku.age++;
+                $('#avatarAge').text(`Age: ${goku.age}`)
+            };
 
-        // Evolve logic
-        if( goku.age < goku.ageCutoff.stage1
-          ){
-            $avatar.attr('src', goku.avatarImg.stage0);
-            $('#seiyanStage').text(`${goku.seiyanStage.stage0}`)
-        } else if(
-            goku.age >= goku.ageCutoff.stage1 &&
-            goku.age < goku.ageCutoff.stage2
-          ){
-            $avatar.attr('src', goku.avatarImg.stage1);
-            $('#seiyanStage').text(`${goku.seiyanStage.stage1}`)
-        } else if (
-            goku.age >= goku.ageCutoff.stage2 && 
-            goku.age < goku.ageCutoff.stage3
-          ){
-            $avatar.attr('src', goku.avatarImg.stage2);
-            $('#seiyanStage').text(`${goku.seiyanStage.stage2}`)
-        } else if (
-            goku.age >= goku.ageCutoff.stage3 && 
-            goku.age < goku.ageCutoff.stage4
-          ){
-            $avatar.attr('src', goku.avatarImg.stage3);
-            $('#seiyanStage').text(`${goku.seiyanStage.stage3}`)
-        } else if (
-            goku.age >= goku.ageCutoff.stage4 && 
-            goku.age < goku.ageCutoff.stage5
-          ){
-            $avatar.attr('src', goku.avatarImg.stage4);
-            $('#seiyanStage').text(`${goku.seiyanStage.stage4}`)
-        } else if (
-            goku.age > goku.ageCutoff.stage5
-          ){
-            $avatar.attr('src', goku.avatarImg.stage5);
-            $('#seiyanStage').text(`${goku.seiyanStage.stage5}`)
-        };
-        
+            // Evolve logic
+            if( goku.age < goku.ageCutoff.stage1
+            ){
+                $avatar.attr('src', goku.avatarImg.stage0);
+                $('#seiyanStage').text(`${goku.seiyanStage.stage0}`)
+            } else if(
+                goku.age >= goku.ageCutoff.stage1 &&
+                goku.age < goku.ageCutoff.stage2
+            ){
+                $avatar.attr('src', goku.avatarImg.stage1);
+                $('#seiyanStage').text(`${goku.seiyanStage.stage1}`)
+            } else if (
+                goku.age >= goku.ageCutoff.stage2 && 
+                goku.age < goku.ageCutoff.stage3
+            ){
+                $avatar.attr('src', goku.avatarImg.stage2);
+                $('#seiyanStage').text(`${goku.seiyanStage.stage2}`)
+            } else if (
+                goku.age >= goku.ageCutoff.stage3 && 
+                goku.age < goku.ageCutoff.stage4
+            ){
+                $avatar.attr('src', goku.avatarImg.stage3);
+                $('#seiyanStage').text(`${goku.seiyanStage.stage3}`)
+            } else if (
+                goku.age >= goku.ageCutoff.stage4 && 
+                goku.age < goku.ageCutoff.stage5
+            ){
+                $avatar.attr('src', goku.avatarImg.stage4);
+                $('#seiyanStage').text(`${goku.seiyanStage.stage4}`)
+            } else if (
+                goku.age > goku.ageCutoff.stage5
+            ){
+                $avatar.attr('src', goku.avatarImg.stage5);
+                $('#seiyanStage').text(`${goku.seiyanStage.stage5}`)
+            };
+        }
     },
 
     healthLevelIncrease(){
@@ -304,23 +302,37 @@ $playButton.click(gameFeed.play__gokuBoredomLevel);
 
 
 // Controls
+$pauseButton.on('click', (event) => console.log('pause')); 
+$pauseButton.on('click', (event) => goku.isPaused = true); 
+$pauseButton.on('click', (event) => $pauseButton.addClass('active')); 
+$pauseButton.on('click', (event) => $resumeButton.removeClass('active')); 
 
-// $stopButton.on('click', (event) => clearInterval(gameAge.timerAge))
-// $stopButton.on('click', (event) => clearInterval(gameAge.timerHealth));
-// $stopButton.on('click', (event) => $stopButton.addClass('active'));
+$resumeButton.on('click', (event) => console.log('play')); 
+$resumeButton.on('click', (event) => goku.isPaused = false);
+$resumeButton.on('click', (event) => $resumeButton.addClass('active')); 
+$resumeButton.on('click', (event) => $pauseButton.removeClass('active')); 
+
+// $evolveButton.on('click', (event) => goku.isPaused = true);
+$evolveButton.on('click', (event) => $pauseButton.click());
+$evolveButton.on('click', (event) => $avatar.attr('src', goku.avatarImg.stage5))
+
 $reloadButton.on('click', (event) => location.reload());
 $reloadButton.on('click', (event) => $start.click());
 
 $restart.on('click', (event) => location.reload());
-
-$start.on('click', function(e) {
-    e.preventDefault();
-    console.log('hit stop');
-    isPaused = true;
-  });
 
 /* === Invoked Functions === */
 
 // AUTO START
 // $start.click();
 // Poke-a-square: $button.click(game.start.bind(game));
+
+
+
+
+/* DUMP */
+
+// STOP BUTTON
+// $stopButton.on('click', (event) => clearInterval(gameAge.timerAge))
+// $stopButton.on('click', (event) => clearInterval(gameAge.timerHealth));
+// $stopButton.on('click', (event) => $stopButton.addClass('active'));

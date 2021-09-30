@@ -96,14 +96,6 @@ input {
     visibility: hidden;
   }
 
-
-/* FIXME: Cannot target parent background without targeting children
-/* #gameOverModal {
-    opacity: 0.1;
-    background-color: white;
-} 
-*/
-
 .modal-dialog, .modal-content, .modal-header, .modal-body, .modal-footer, .modal-title {
     opacity: 1;
     background-color: white;
@@ -123,7 +115,7 @@ input {
 
 /* Game Controls Below */
 #row__gameControls {
-    margin: 10px
+    margin: 10px;
 }
 
 #row__gameControls .btn {
