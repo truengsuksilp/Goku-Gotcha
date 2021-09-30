@@ -3,43 +3,7 @@ console.log('[app.js] Loaded');
     // clearInterval(timerAge)
 
 /* === Questions === */
-    // Modals: How to target the background of the modal?
-    // How to create a global variable from an object method?  Use Case: Creating alias for DOM elements
-
-/* === LEARNINGS === */
-    // jQuery: Cannot target a DOM element in the JS code, because it's created
-    // CSS: Target with ID when possible (e.g., define alias for $start as a class for red buttons )
-        // Lazy and define alias for "Start !" red button as $start
-        // Later added a red button for "Play" 
-        // Added code to click $start and code ran twice.. ($start.click)
-    // CSS & Bootstrap: Wildcard selector (*) can be a pain with Modal (e.g., background-color: black;)
-    // JS: Pay attention during class!!! 
-        // Chrome Dev Tool | element: remove or update properties e.g., background-color, display
-        // e.g., bind(${object}) --> bind(this)
-    // JS: Refactoring is error prone.  Don't try to do too much
-        // Start: Wrote functions outside an object
-        // Refactor: Put functions into objects, and call methods with one method ( startGame(event), startFeed(event) )
-        // Attempt: Tried to collapse into 1 line and removed eventListeners on other buttons
-        // Final: 5 lines
-    // JS: Timer -- Use it to invoke loops (e.g., evolve)
-        // Context 1: Store time in timerAge: null,
-        // Context 2: Create method timerAge(){ //--code block with this--// }
-        // Before: this.timerAge = setInterval (agingFunction, 1000ms)  // Increase age every 1000ms
-        // After: this.timerAge = setInterval (ageAndEvolve, 1000ms)    // Add 1 conditional to run every 1000ms, check age & change img
-    // JS & HTML: Visible AND invisible components to keep everything in HTML, so it's easy to prototype and target with jQuery alias 
-        // Former approach: Start button, remove start button, add 3 buttons
-        // New approach: Start buttons + 3 buttons (.invisible), CSS: visibility: hidden, JS: remove class
-    
-
-/* ==== Tips & Syntax notes === */
-    // JS: alert() sucks!! ---> Use prompt, so you can cancel out
-    // JS: Syntax wat -- Backticks (``) ignores spaces 
-    // CSS: Use display: none
-    // Bootstrap & CSS: Hide and Show
-        // Use class .invisible and .removeClass('invisible'): https://getbootstrap.com/docs/4.1/utilities/visibility/
-        // Usual doesn't work Display: none -> display: flex (See Chrome Dev Tool Elements > Styles --> change to display: Flex)
-    // Bootstrap: KISS - modal-title, Content, Blue button, Grey button
-
+    // Modals: How to pause setInterval
 
 /* === === Approach: Use Objects and Functions === === */
 
@@ -65,6 +29,11 @@ const $hungerLevel = $('#hungerLevel');
 const $sleepLevel = $('#sleepLevel');
 const $boredomLevel = $('#boredomLevel');
 
+/* === Dom Elements: Control Buttons  === */
+const $resumeButton = $('#resumeButton');
+const $stopButton = $('#stopButton');
+const $reloadButton = $('#reloadButton');
+const $evolveButton = $('#evolveButton');
 
 /* === Variables: Objects with Methods === */
 
@@ -79,10 +48,11 @@ const goku = {
     boredomLevel: 5,
     alive: true,
     aging: false,
+    isPaused: false,
 
     // Goku Aging Values
     healthLevelUp: 3*10000,
-    ageLevelUp: 2*1000,
+    ageLevelUp: 1*1000,
     ageCutoff: {
         stage0: 0,
         stage1: 5,
@@ -239,8 +209,14 @@ const gameAge = {
     },
 
     ageAndEvolve(){
+        
+        // FIXME: Prevent Aging if game is paused 
+        // if(goku.isPaused === false){
+        //     this.timerAge.preventDefault();
+        // };
+
         // Age if alive
-        if(goku.alive === true && goku.age <= 100){
+        if(goku.alive === true && goku.age <= 100 && !goku.isPaused){
             goku.age++;
             $('#avatarAge').text(`Age: ${goku.age}`)
         };
@@ -316,6 +292,8 @@ const gameAge = {
 
 }
 
+/* === Event Functions: Controls === */
+
 /* === Event Listeners === */
 
 $start.click(gameInitiate.gameStart.bind(gameInitiate));
@@ -323,7 +301,23 @@ $start.click(gameAge.startAging.bind(gameAge));
 $eatButton.click(gameFeed.eat__gokuHungerLevel);
 $sleepButton.click(gameFeed.sleep__gokuSleepLevel);
 $playButton.click(gameFeed.play__gokuBoredomLevel);
+
+
+// Controls
+
+// $stopButton.on('click', (event) => clearInterval(gameAge.timerAge))
+// $stopButton.on('click', (event) => clearInterval(gameAge.timerHealth));
+// $stopButton.on('click', (event) => $stopButton.addClass('active'));
+$reloadButton.on('click', (event) => location.reload());
+$reloadButton.on('click', (event) => $start.click());
+
 $restart.on('click', (event) => location.reload());
+
+$start.on('click', function(e) {
+    e.preventDefault();
+    console.log('hit stop');
+    isPaused = true;
+  });
 
 /* === Invoked Functions === */
 

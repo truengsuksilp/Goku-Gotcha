@@ -2,13 +2,13 @@
 
 * {
     box-sizing: border-box;
-    background-color: black;
+    /* background-color: black; */
     /* border: 1px solid rebeccapurple; */
 }
 
 body {
     background-color: black;
-    margin: 50px 0px;
+    margin: 5px 0px;
 }
 
 /* === Text styling === */
@@ -22,6 +22,8 @@ h4 { color: white; }
 p, li {font-size: 0.8rem;}
 
 span { color: red; }
+
+input { background-color: black; }
 
 /* === Component Specific === */
 
@@ -115,4 +117,19 @@ input {
 
 #avatarAge {
     margin-left: 10px;
+}
+
+
+
+/* Game Controls Below */
+#row__gameControls {
+    margin: 10px
+}
+
+#row__gameControls .btn {
+    margin-left: 15px;
+}
+
+.glyphicon {
+    background-color: white;
 }

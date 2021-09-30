@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goku-Gotcha: Goku going through GA</title>
 
-    <!-- // Vendor: Bootstrap CSS, jQuery, Popper, Bootstrap JS// -->
+    <!-- // Vendor: Bootstrap CSS, jQuery, Popper, Bootstrap JS, Font Awesome// -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- // My scripts // -->
     <link rel="stylesheet" href="./styles/main.css">
@@ -18,7 +20,29 @@
 
 </head>
 <body>
-    
+
+    <!-- Game Controls -->
+    <div class="container" id='container__gameControls'>
+        <div class="d-flex justify-content-end" id='row__gameControls'>
+            <button type="button" class="btn btn-outline-danger btn-sm active" id="resumeButtton">
+                <i class="fas fa-play"></i> 
+                Play
+            </button>
+            <button type="button" class="btn btn-outline-danger btn-sm" id="stopButton">
+                <i class="fas fa-stop"></i>
+                Stop
+            </button>
+            <button type="button" class="btn btn-outline-danger btn-sm" id="reloadButton">
+                <i class="fa fa-redo-alt"></i>
+                Reload
+            </button>
+            <button type="button" class="btn btn-outline-danger btn-sm" id="evolveButton">
+                <i class="fa fa-magic"></i>
+                Evolve
+            </button>
+        </div>
+    </div>
+
     <!-- Avatar Name & Age -->
 
     <div class="container" id="avatar_NameAge">
@@ -87,7 +111,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content" id='gameOverModal__content'>
       <div class="modal-header">
-        <h5 class="modal-title" id="gameOverModalLabel">Game Over</>
+        <h5 class="modal-title" id="gameOverModalLabel">Game Over<h5/>
       </div>
       <div class="modal-body">
         You died of hunger OR sleepiness OR boredom.  
@@ -103,4 +127,6 @@
 
 </body>
 </html>
+
+
 
