@@ -14,6 +14,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+    <!-- Audio source code: https://mdbootstrap.com/snippets/jquery/ascensus/419481 -->
+
+
     <!-- // My scripts // -->
     <link rel="stylesheet" href="./styles/main.css">
     <script src="./scripts/app.js" defer></script>
@@ -55,6 +58,8 @@
         </div>
     </div>
     
+    <!-- Avatar & Game Description -->
+
     <div class="container" id='game_console'>
         <div class="row" id='row__avatar'>
             <div class="col" id='col__avatar'>
@@ -63,18 +68,20 @@
                   src="https://media.giphy.com/media/JdyQWFOVo6s5G/giphy.gif?cid=ecf05e47200v8hf0832epj8vg0l4ossb6qnvish73bsoomuq&rid=giphy.gif&ct=g" alt="gokuBoy">
             </div>
             <div class="col" id='col__gameDescription'>
-                <h2>Game Description</h2>
-                <p>
-                    Hit play to start playing
+                <h2 id='gameDesc__title'>Game Description</h2>
+                <p class='gameDesc__p' id='gameDesc__p1' >
+                    Goku is leveling up through GA Bootcamp... but there's a "Gotcha".
+                    \n
+                    Goku needs to stay alive
                     Your job is to keep leveling up through the GA Bootcamp as <span><strong>Goku</strong></span>.
                 </p>
-                <p>
+                <p class='gameDesc__p' id='gameDesc__p2'>
                     As you go through your GA Bootcamp, your level of hunger / sleep-deprived / boredom will increase.  Reaching level 10 on these issues and you die.  
                 </p>
-                <p>
+                <p class='gameDesc__p' id='gameDesc__p3'>
                     To not die, you must do "human things": 
                 </p>
-                <ul>
+                <ul id='gameDesc__ul'>
                     <li>Eat</li>
                     <li>Sleep</li>
                     <li>Play</li>
@@ -105,8 +112,10 @@
             </div>
         </div>
     </div>
-  
-<!-- Modal -->
+
+
+
+<!-- Modal: Game Over -->
 <div class="modal fade" id="gameOverModal" tabindex="-1" le="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" id='gameOverModal__content'>
@@ -114,7 +123,7 @@
         <h5 class="modal-title" id="gameOverModalLabel">Game Over<h5/>
       </div>
       <div class="modal-body">
-        You died of hunger OR sleepiness OR boredom.  /n
+        You died of hunger OR sleepiness OR boredom.  <br>
         You failed to enough "Human Things" during the bootcamp.
       </div>
       <div class="modal-footer">
@@ -125,8 +134,28 @@
   </div>
 </div>
 
+<!-- Modal: Master Roshi Modal -->
+<div class="modal fade" id="masterRoshiModal" tabindex="-1" le="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" id='masterRoshiModal__content'>
+        <div class="modal-header">
+          <h5 class="modal-title" id="masterRoshiModal__Label">Introduced to Master Roshi<h5/>
+        </div>
+        <div class="modal-body d-flex justify-content-center">
+          <img id='masterRoshiImg' src="https://media.giphy.com/media/6Ema9pC1OlXbi/giphy.gif" alt="">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id='closeButtonMasterRoshi'>Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
+
+
+
 
 
 
