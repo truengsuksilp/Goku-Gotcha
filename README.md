@@ -61,8 +61,6 @@ Goku dies when you do not do human things and your level of hunger, sleepiness, 
 
 ##### Approach: Use Objects and nested methods
 
-/* === Variables: n/a  === */
-
 /* === Dom Elements  === */
 - Landing Page
 - Game Console Page
@@ -73,15 +71,9 @@ Goku dies when you do not do human things and your level of hunger, sleepiness, 
 - gameFeed: gameFeedInitation method to allow users to interact with health level metrics
 - gameAge: startAging method to get Goku to age, deteriorate, and evolve
 
-/* === Event Functions: n/a  === */
-- Moved to methods
-
 /* === Event Listeners  === */
 - Add interactions (clicks to start, eat, sleep, play)
 - Add control buttons (clicks to stop, reload, restart after game over)
-
-/* === Invoked Functions: n/a === */
-- Commented out auto-start for the game's final version
 
 -----------------------------------------------------
 
@@ -120,3 +112,9 @@ Goku dies when you do not do human things and your level of hunger, sleepiness, 
     // Bootstrap & CSS: Hide and Show
         // Use class .invisible and .removeClass('invisible'): https://getbootstrap.com/docs/4.1/utilities/visibility/
         // Usual doesn't work Display: none -> display: flex (See Chrome Dev Tool Elements > Styles --> change to display: Flex)
+
+
+/* === Variables: n/a  === */
+/* === Event Functions: n/a  === */ - Moved to methods
+
+/* === Invoked Functions: n/a === */ - Commented out auto-start for the game's final version
