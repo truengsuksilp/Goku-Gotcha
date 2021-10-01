@@ -16,13 +16,16 @@ body {
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Inter&family=Odibee+Sans&family=Play&display=swap');
 
-header, h2, h4, h5, h6, p, input { 
-    color: white;
+header, h2, h4, h5, h6, p, input {    
     font-family: 'Audiowide', cursive;
     /* font-family: 'Play', sans-serif; */
     /* font-family: 'Odibee Sans'; */
     /* font-family: 'Cambria', serif */
     /* font-family: 'Inter', sans-serif;  */
+}
+
+header, h2, h4, h6, p, input {    
+  color: white;
 }
 
 #gameDesc__title { 
