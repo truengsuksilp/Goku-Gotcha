@@ -56,7 +56,7 @@ const contentSkills = {
         0: '<span>Unit 0:</span> Get into GA Bootcamp',
         1: '<span>Unit 1:</span> Get trained on FUNdamentals',
         2: '<span>Unit 2:</span> Learn Server and DB',
-        3: '<span>Unit 3:</span> Level up on Server and DB 🐍',
+        3: '<span>Unit 3:</span> Level up on Server and DB',
         4: '<span>Unit 4:</span> Go through React and API',
         5: '<span>Unit 5:</span> Turn Super Seiyan !!'
     },
@@ -85,8 +85,8 @@ const goku = {
     coderMode: false,
 
     // Goku Config: Aging Pace
-    healthLevelUp: 3*1000,
-    ageLevelUp: 1.5*1000,
+    healthLevelUp: 5*1000,
+    ageLevelUp: 3*1000,
     ageCutoff: {
         stage0: 0,
         stage1: 5,
@@ -165,6 +165,9 @@ const gameInitiate = {
     addStageAndAge(event){
         $('#row__avatarName').append(`<h4 id="seiyanStage">${goku.seiyanStage.stage0}</h4>`);
         $('#row__avatarName').append(`<h4 id="avatarAge"></h4>`);
+
+        $('#seiyanStage').css('margin-top', '5px')
+        $('#avatarAge').css('margin-top', '5px')
     },
 
     removeStartButton(event) {
