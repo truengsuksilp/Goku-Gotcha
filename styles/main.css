@@ -1,4 +1,8 @@
-/* === Global === */
+/* === === General styling === === */  
+
+/* Global */
+
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Inter&family=Odibee+Sans&family=Play&display=swap');
 
 * {
     box-sizing: border-box;
@@ -11,27 +15,11 @@ body {
     margin-top: 20px;
 }
 
-/* === Text styling === */
+/* Text styling */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Inter&family=Odibee+Sans&family=Play&display=swap');
+header, h2, h4, h5, h6, p, input { font-family: 'Audiowide', cursive; }
 
-header, h2, h4, h5, h6, p, input {    
-    font-family: 'Audiowide', cursive;
-    /* font-family: 'Play', sans-serif; */
-    /* font-family: 'Odibee Sans'; */
-    /* font-family: 'Cambria', serif */
-    /* font-family: 'Inter', sans-serif;  */
-}
-
-header, h2, h4, h6, p, input {    
-  color: white;
-}
-
-#gameDesc__title { 
-    font-weight: bold;
-    margin-bottom: 20px; 
-}
+header, h2, h4, h6, p, input {  color: white; }
 
 p, li {font-size: 1rem; }
 
@@ -43,17 +31,7 @@ span { color: red; font-weight: bold;}
 
 input { background-color: black; }
 
-/* === Main Content === */
-
-header { 
-    font-size: 30px;
-    /* font-weight: bold; */
-    margin: 10px; 
-}
-
-#container__header {
-    border-radius: 0%;
-}
+/* Grid */
 
 div.container {
     border: 2px solid goldenrod;
@@ -62,10 +40,6 @@ div.container {
     max-width: 700px;
     /* padding: 20px;   */
     margin-bottom: 20px;  
-}
-
-#game_console {
-    padding-top: 20px;
 }
 
 div.row {
@@ -81,41 +55,26 @@ div.col {
     overflow: hidden;
 }
 
+/* === Main Content === */
+
+/* Header */
+
+header { 
+    font-size: 30px;
+    /* font-weight: bold; */
+    margin: 10px; 
+}
+
+#container__header {
+    border-radius: 0%;
+}
+
+/* Top Section */
+
 #avatarName {
     margin-top: 5px;
     padding-right: 5px;
 }
-
-.invisible {
-    visibility: hidden;
-  }
-
-
-/* Modals */
-
-.modal-dialog, .modal-content, .modal-header, .modal-body, .modal-footer, .modal-title {
-    opacity: 1;
-    background-color: rgb(214, 214, 214);
-}
-
-.modal-dialog {
-    border-radius: 5%;
-}
-
-.modal-header {
-    border-bottom: 2px solid black;
-}
-
-#masterRoshiImg {
-    max-width: 400px;
-    border-radius: 5%;
-}
-
-#avatarAge {
-    margin-left: 10px;
-}
-
-/* === INPUT BOX === */
 
 input {
     min-width: 300px;
@@ -124,17 +83,11 @@ input {
     padding-left: 15px;
 }
 
-/* === Game Controls === */
+/* Mid Section */
 
-#resumeButton, #pauseButton, #reloadButton, #evolveButton {
-    margin-right: 10px;
+#container__console {
+    padding-top: 20px;
 }
-
-.glyphicon {
-    background-color: white;
-}
-
-/* Avatar Images */
 
 #avatar {
     width: 300px;
@@ -152,7 +105,16 @@ input {
     /* max-width: 400px; -- this gets it to center */ 
 }
 
-/* Start, Coder Mode, Game Buttons */
+#avatarAge {
+    margin-left: 10px;
+}
+
+#gameDesc__title { 
+    font-weight: bold;
+    margin-bottom: 20px; 
+}
+
+/* Bottom Section: Start, Coder Mode, Game Buttons */
 
 #container__gameButtons {
     margin-top: 25px;
@@ -181,12 +143,41 @@ input {
     min-width: 100px;
 }
 
+#resumeButton, #pauseButton, #reloadButton, #evolveButton {
+    margin-right: 10px;
+}
+
+.glyphicon {
+    background-color: white;
+}
+
 #coderModeButton{
     width: 100vh;
     max-width: 500px;
     margin: 0px 20px 0px 20px;
 }
 
-/* .col__avatar {
-    grid-auto-flow: column;
-} */
+/* === Interactivity === */  
+
+/* Show & Hide */
+
+.invisible {
+    visibility: hidden;
+  }
+
+/* Modals */
+
+.modal-dialog  {
+    opacity: 1;
+    background-color: rgb(214, 214, 214);
+    border-radius: 5%;
+}
+
+.modal-header {
+    border-bottom: 2px solid black;
+}
+
+#masterRoshiImg {
+    max-width: 400px;
+    border-radius: 5%;
+}
