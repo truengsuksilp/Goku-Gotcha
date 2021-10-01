@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goku-Gotcha: Goku going through GA</title>
+    <title>Goku-Gotcha: Goku going through Bootcamp</title>
 
     <!-- // Vendor: Bootstrap CSS, jQuery, Popper, Bootstrap JS, Font Awesome// -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -23,9 +23,11 @@
 
 </head>
 <body>
-    <div class="container invisible" id='block'>
-                x
-    </div>
+    <!-- <header id='header'>
+        <div class="container" id='container__header'>
+            GOKU GOTCHA !
+        </div>
+    </header> -->
     <!-- Game Controls -->
     <div class="container invisible" id='container__gameControls'>
         <div class="row d-flex justify-content-start" id='row__gameControls'>
@@ -55,9 +57,6 @@
             <h4 id='avatarName'>Name:</h4>
             <input type="text" placeholder="ENTER NAME ( Default: Goku )" maxlength="30">
         </div>
-        <div class="row" id="row__avatarAge">
-            <!-- <h4 id='avatarAge'>Age: </h4> MOVED TO JS-->
-        </div>
     </div>
     
     <!-- Avatar & Game Description -->
@@ -70,25 +69,13 @@
                   src="https://media.giphy.com/media/JdyQWFOVo6s5G/giphy.gif?cid=ecf05e47200v8hf0832epj8vg0l4ossb6qnvish73bsoomuq&rid=giphy.gif&ct=g" alt="gokuBoy">
             </div>
             <div class="col" id='col__gameDescription'>
-                <h2 id='gameDesc__title'>Game Description</h2>
-                <p class='gameDesc__p' id='gameDesc__p1' >
-                    <span><strong>Goku</strong></span> is leveling up through GA Bootcamp... 
-                    <br>
-                    But there's a gotcha... 
-                    <br>
-                    Goku needs to stay alive
-                    <br>
-                </p>
-                <p class='gameDesc__p' id='gameDesc__p2'>
-                    GA Bootcamp takes energy.  You will die if your hunger / sleep-deprived / boredom levels reach 10. 
-                </p>
-                <p class='gameDesc__p' id='gameDesc__p3'>
-                    You must do "Human Things": 
-                </p>
+                <!-- <h4 id='gameDesc__title'>Game Description</h4> -->
+                <h6 class='gameDesc__p' id='gameDesc__h6' >
+                    Goku is leveling up through... <br>
+                    Coding Bootcamp !! <br>
+                    Keep Goku alive !!
+                </h6>
                 <ul id='gameDesc__ul'>
-                    <li>Eat</li>
-                    <li>Sleep</li>
-                    <li>Play</li>
                 </ul>
             </div>
         </div>
@@ -116,16 +103,6 @@
                     <h5 id="boredomLevel">Boredom: </h5>
                     <button type="button" class="btn btn-danger" id='playButton'>Play</button>
                 </div>
-
-                <!-- Coder Mode 5 buttons -->
-                <!-- <div class="col" id='col__code4Button'>
-                    <h5 id="code4Button">NodeJS: </h5>
-                    <button type="button" class="btn btn-danger" id='code4Button'>Play</button>
-                </div>
-                <div class="col" id='col__code5Button'>
-                    <h5 id="code5Level">HTML / CSS / Basic JS: </h5>
-                    <button type="button" class="btn btn-danger" id='code5Button'>Play</button>
-                </div> -->
                 
             </div>
         </div>

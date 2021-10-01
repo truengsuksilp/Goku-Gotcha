@@ -8,28 +8,49 @@
 
 body {
     background-color: black;
-    margin: px 0px;
+    margin-top: 20px;
 }
 
 /* === Text styling === */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Inter&family=Odibee+Sans&family=Play&display=swap');
 
-h2, h4, h6, p, input { font-family: 'Inter', sans-serif; color: white;}
+header, h2, h4, h5, h6, p, input { 
+    color: white;
+    font-family: 'Audiowide', cursive;
+    /* font-family: 'Play', sans-serif; */
+    /* font-family: 'Odibee Sans'; */
+    /* font-family: 'Cambria', serif */
+    /* font-family: 'Inter', sans-serif;  */
+}
 
-#gameDesc__title { margin-bottom: 20px; }
+#gameDesc__title { 
+    font-weight: bold;
+    margin-bottom: 20px; 
+}
 
-h4 { color: white; }
+p, li {font-size: 1rem; }
 
-p, li {font-size: 0.8rem; }
+h4 { line-height: 0.8; }
 
-p { margin-top: 10px; }
+h6 { font-size: 1.5rem; line-height: 2;}
 
-span { color: red; }
+span { color: red; font-weight: bold;}
 
 input { background-color: black; }
 
 /* === Main Content === */
+
+header { 
+    font-size: 30px;
+    /* font-weight: bold; */
+    margin: 10px; 
+}
+
+#container__header {
+    border-radius: 0%;
+}
 
 div.container {
     border: 2px solid goldenrod;
@@ -58,8 +79,7 @@ div.col {
 }
 
 #avatarName {
-    padding-top: 5px;
-    padding-right: 15px;
+    padding-right: 5px;
 }
 
 .invisible {
@@ -102,12 +122,8 @@ input {
 
 /* === Game Controls === */
 
-#row__gameControls {
-    margin: 10px;
-}
-
-#row__gameControls .btn {
-    margin-left: 15px;
+#resumeButton, #pauseButton, #reloadButton, #evolveButton {
+    margin-right: 10px;
 }
 
 .glyphicon {
@@ -152,10 +168,12 @@ input {
     margin: 0px 20px 0px 20px;
 }
 
+#row__gameButtons {
+    margin: 0px;
+}
+
 #eatButton, #sleepButton, #playButton, #code4Button, #code5Button {
-    /* display: none; */
     min-width: 100px;
-    align-items: center;
 }
 
 #coderModeButton{

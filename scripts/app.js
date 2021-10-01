@@ -1,15 +1,8 @@
 // Brower will not run individual commands... LOL
 
 console.log('[app.js] Loaded');
-$('#container__gameButtons').hide();
-$('#container__gameControls').hide();
     // $('#gameOverModal').modal('show');
     // clearInterval(timerAge)
-
-
-
-/* === Questions === */
-    // Modals: How to pause setInterval
 
 /* === === Approach: Use Objects and Functions === === */
 
@@ -21,11 +14,7 @@ const $coderMode = $('#coderModeButton')
 const $restart = $('#restartButton');
 
 const $col__gameDescription = $('#col__gameDescription');
-const $gameDesc__title = $('#gameDesc__title');
-const $gameDesc__p = $('.gameDesc__p');
-const $gameDesc__p1 = $('#gameDesc__p1');
-const $gameDesc__p2 = $('#gameDesc__p2');
-const $gameDesc__p3 = $('#gameDesc__p3');
+const $gameDesc__h6 = $('#gameDesc__h6');
 const $gameDesc__ul = $('#gameDesc__ul');
 
 const $avatar = $('#avatar');
@@ -51,14 +40,25 @@ const $evolveButton = $('#evolveButton');
 
 /* === Variables: Objects with Methods === */
 
+const hide = {
+    gameElements(){
+      $('#container__gameButtons').hide();
+      $('#container__gameControls').hide();
+    },
+
+    inputElement(){
+    $('#avatar_NameAge').hide();
+    },
+}
+
 const contentSkills = {
     unitTitles: {
-        0: '<span><strong>Unit 0</strong></span>: Get into GA Bootcamp',
-        1: '<span><strong>Unit 1</strong></span>: Start training with Master Roshi on FE Fund',
-        2: '<span><strong>Unit 2</strong></span>: Level up with Master Roshi on Server and DB',
-        3: '<span><strong>Unit 3</strong></span>: Get to know Python for Server and DB',
-        4: '<span><strong>Unit 4</strong></span>: Train with Master Roshi on React and API',
-        5: '<span><strong>Unit 5</strong></span>: Turn Super Seiyan with Capstone Project'
+        0: '<span>Unit 0:</span> Get into GA Bootcamp',
+        1: '<span>Unit 1:</span> Get trained on FUNdamentals',
+        2: '<span>Unit 2:</span> Learn Server and DB',
+        3: '<span>Unit 3:</span> Level up on Server and DB 🐍',
+        4: '<span>Unit 4:</span> Go through React and API',
+        5: '<span>Unit 5:</span> Turn Super Seiyan !!'
     },
     weekTitles: {
         1: 'FUNDAMENTALS',
@@ -96,12 +96,12 @@ const goku = {
         stage5: 25,
     },
     seiyanStage:{
-        stage0: `Clueless Baby Seiyan`,
-        stage1: `Curious Toddler Seiyan`,
-        stage2: `Clueless Seiyan`,
-        stage3: `Training Seiyan`,
-        stage4: `Transforming...!!!`,
-        stage5: `Super Seiyan !!!`,
+        stage0: `Clueless Baby -`,
+        stage1: `Curious Baby -`,
+        stage2: `Clueless Goku -`,
+        stage3: `Training Goku -`,
+        stage4: `Transforming...!!! -`,
+        stage5: `Super Seiyan !!! -`,
     },
     seiyanStageDesc: {
         stage0: `You're clueless baby Seiyan`,
@@ -134,7 +134,8 @@ const gameInitiate = {
     gameStart(event) {
         console.warn("=== Game Start ===");
         this.updateAvatarToStage0(event);
-        this.addNameAge();
+        this.addName();
+        this.addStageAndAge();
         this.removeStartButton();
         this.removeGameDesc();
         this.addHealthButtons();
@@ -147,20 +148,23 @@ const gameInitiate = {
         $avatar.attr('src', goku.avatarImg.stage0)
     },
 
-    addNameAge(event) {
+    addName(event) {
         // console.log('Add Name & Age');
         goku.name = $('input').val();
+        $('input').hide();
 
         if($('input').val() !== ''){
-            $('#avatarName').text(`${goku.name}`);
+            $('#avatarName').text(`${goku.name} - `);
         } else {
-            $('#avatarName').text(`${goku.nameDefault}`);
+            $('#avatarName').text(`${goku.nameDefault} -`);
         }
 
-        $('input').addClass('invisible');
-        $('#row__avatarAge').append(`<h6 id="seiyanStage">${goku.seiyanStage.stage0}</h6>`);
-        $('#row__avatarAge').append(`<h6 id="avatarAge"></h6>`);
+        
+    },
 
+    addStageAndAge(event){
+        $('#row__avatarName').append(`<h4 id="seiyanStage">${goku.seiyanStage.stage0}</h4>`);
+        $('#row__avatarName').append(`<h4 id="avatarAge"></h4>`);
     },
 
     removeStartButton(event) {
@@ -174,9 +178,9 @@ const gameInitiate = {
     },
 
     updateGameDesc(event){
-        $gameDesc__title.text('Coding Skills');
-        $gameDesc__p.remove();
-        $gameDesc__title.append(`<p>${contentSkills.unitTitles[0]}</p>`);
+        console.log('Update Game Desc. to show Coding Skills')
+        $gameDesc__h6.text('Coding Journey');
+        $gameDesc__h6.append(`<p>${contentSkills.unitTitles[0]}</p>`);
         $('#gameDesc__ul > li').remove();
     },
  
@@ -304,7 +308,7 @@ const gameAge = {
                 if( goku.age === goku.ageCutoff.stage1){
                     $('#masterRoshiModal').modal('show');
                     $pauseButton.click();
-                    $gameDesc__title.append(`<p class='unitsGA'>${contentSkills.unitTitles[1]}</p>`);
+                    $gameDesc__h6.append(`<p class='unitsGA'>${contentSkills.unitTitles[1]}</p>`);
                 };
             } else if (
                 goku.age >= goku.ageCutoff.stage2 && 
@@ -313,7 +317,7 @@ const gameAge = {
                 $avatar.attr('src', goku.avatarImg.stage2);
                 $('#seiyanStage').text(`${goku.seiyanStage.stage2}`);
                 if( goku.age === goku.ageCutoff.stage2){
-                    $gameDesc__title.append(`<p class='unitsGA'>${contentSkills.unitTitles[2]}</p>`);
+                    $gameDesc__h6.append(`<p class='unitsGA'>${contentSkills.unitTitles[2]}</p>`);
                 };
             } else if (
                 goku.age >= goku.ageCutoff.stage3 && 
@@ -322,7 +326,7 @@ const gameAge = {
                 $avatar.attr('src', goku.avatarImg.stage3);
                 $('#seiyanStage').text(`${goku.seiyanStage.stage3}`);
                 if( goku.age === goku.ageCutoff.stage3){
-                    $gameDesc__title.append(`<p class='unitsGA'>${contentSkills.unitTitles[3]}</p>`);
+                    $gameDesc__h6.append(`<p class='unitsGA'>${contentSkills.unitTitles[3]}</p>`);
                 };
             } else if (
                 goku.age >= goku.ageCutoff.stage4 && 
@@ -330,7 +334,7 @@ const gameAge = {
             ){
                 $avatar.attr('src', goku.avatarImg.stage4);
                 $('#seiyanStage').text(`${goku.seiyanStage.stage4}`);                if( goku.age === goku.ageCutoff.stage4){
-                    $gameDesc__title.append(`<p class='unitsGA'>${contentSkills.unitTitles[4]}</p>`);
+                    $gameDesc__h6.append(`<p class='unitsGA'>${contentSkills.unitTitles[4]}</p>`);
                 };
             } else if (
                 goku.age >= goku.ageCutoff.stage5
@@ -338,7 +342,7 @@ const gameAge = {
                 $avatar.attr('src', goku.avatarImg.stage5);
                 $('#seiyanStage').text(`${goku.seiyanStage.stage5}`);
                 if( goku.age === goku.ageCutoff.stage5){
-                    $gameDesc__title.append(`<p class='unitsGA'>${contentSkills.unitTitles[5]}</p>`);
+                    $gameDesc__h6.append(`<p class='unitsGA'>${contentSkills.unitTitles[5]}</p>`);
                 };
             };
         }
@@ -425,8 +429,8 @@ $evolveButton.on('click', (event) => $pauseButton.click());
 $evolveButton.on('click', (event) => $avatar.attr('src', goku.avatarImg.stage5))
 $evolveButton.on('click', (event) => $('.unitsGA').remove());
 
-$evolveButton.on('click', (event) => console.log('test'));
-$evolveButton.on('click', (event) => $gameDesc__title.append(`<p>${contentSkills.unitTitles[1]}</p><p>${contentSkills.unitTitles[2]}</p><p>${contentSkills.unitTitles[3]}</p><p>${contentSkills.unitTitles[4]}</p><p>${contentSkills.unitTitles[5]}</p>`));
+$evolveButton.on('click', (event) => $gameDesc__h6.append(`<p>${contentSkills.unitTitles[1]}</p><p>${contentSkills.unitTitles[2]}</p><p>${contentSkills.unitTitles[3]}</p><p>${contentSkills.unitTitles[4]}</p><p>${contentSkills.unitTitles[5]}</p>`));
+$evolveButton.on('click', (event) => $gameDesc__h6.css('line-height', 1.8));
 
 $reloadButton.on('click', (event) => location.reload());
 $reloadButton.on('click', (event) => $start.click());
@@ -442,6 +446,7 @@ $coderMode.click((event) => $hungerLevel.text(`HTML: ${goku.hungerLevel}`));
 $coderMode.click((event) => $sleepLevel.text(`CS: ${goku.sleepLevel}`));
 $coderMode.click((event) => $boredomLevel.text(`JS: ${goku.boredomLevel}`));
 
+$(window).on("load", hide.gameElements);
 
 /* === Invoked Functions === */
 
