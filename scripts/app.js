@@ -1,4 +1,5 @@
 /* === === Testing === === */
+
 // console.log('[app.js] Loaded');
 // $('#gameOverModal').modal('show');
 // clearInterval(timerAge)
@@ -40,18 +41,18 @@ const $evolveButton = $('#evolveButton');
 
 /* === Variables: Objects with Methods === */
 
-const hide = {
-    gameElements(){
-      $('#container__gameButtons').hide();
-      $('#container__gameControls').hide();
+// MESSAGES
+
+const gokuStages = {
+    seiyanStage:{
+        stage0: `Clueless Baby -`,
+        stage1: `Curious Baby -`,
+        stage2: `Clueless Goku -`,
+        stage3: `Training Goku -`,
+        stage4: `Transforming...!!! -`,
+        stage5: `Super Seiyan !!! -`,
     },
 
-    inputElement(){
-    $('#avatar_NameAge').hide();
-    },
-}
-
-const contentSkills = {
     unitTitles: {
         0: '<span>Unit 0:</span> Get into GA Bootcamp',
         1: '<span>Unit 1:</span> Get trained on FUNdamentals',
@@ -60,15 +61,26 @@ const contentSkills = {
         4: '<span>Unit 4:</span> Go through React and API',
         5: '<span>Unit 5:</span> Turn Super Seiyan !!'
     },
-    weekTitles: {
-        1: 'FUNDAMENTALS',
+
+    seiyanStageDesc: {
+        stage0: `You're clueless baby Seiyan`,
+        stage1: `You're discovering dragonballs.. but you're still a clueless baby Seiyan`,
+        stage2: `You have the power in your, but you're still lost`,
+        stage3: `You're doing coding push-ups`,
+        stage4: `You're transforming into Super Seiyan....`,
+        stage5: `You're a Super Seiyan!!!`,
     },
-    skills: {
-        1: 'Terminal / Git / Code Editor',
-        2: 'HTML / CSS / JS (Basic)',
-        3: 'jQuery / Bootstrap'
-    }
-} 
+    avatarImg: {
+        stage0: 'https://media.giphy.com/media/u49rMyXHrTUw8/giphy.gif',  // stage0: Clueless, 
+        stage1: 'https://media.giphy.com/media/88kDwXuvzdwHK/giphy.gif',  // stage1: Has a dragonball, 
+        stage2: 'https://media.giphy.com/media/13mfssn73An6De/giphy.gif', // stage2: Lost goku adult, 
+        stage3: 'https://media.giphy.com/media/lPwZcFRMGOFPO/giphy.gif',  // stage3: Training Goku Adult, 
+        stage4: 'https://media.giphy.com/media/C7IxyUB2uXew0/giphy.gif',  // stage4: Turning Seiyan, 
+        stage5: 'https://media.giphy.com/media/B6SyssSlTgPXq/giphy.gif',  // stage5: Super Saiyan
+    },
+}
+
+// GAME
 
 const goku = {
 
@@ -95,31 +107,22 @@ const goku = {
         stage4: 20,
         stage5: 25,
     },
-    seiyanStage:{
-        stage0: `Clueless Baby -`,
-        stage1: `Curious Baby -`,
-        stage2: `Clueless Goku -`,
-        stage3: `Training Goku -`,
-        stage4: `Transforming...!!! -`,
-        stage5: `Super Seiyan !!! -`,
+}
+
+// LANDING PAGE: HIDE ELEMENTS FROM 
+
+const hide = {
+    gameElements(){
+      $('#container__gameButtons').hide();
+      $('#container__gameControls').hide();
     },
-    seiyanStageDesc: {
-        stage0: `You're clueless baby Seiyan`,
-        stage1: `You're discovering dragonballs.. but you're still a clueless baby Seiyan`,
-        stage2: `You have the power in your, but you're still lost`,
-        stage3: `You're doing coding push-ups`,
-        stage4: `You're transforming into Super Seiyan....`,
-        stage5: `You're a Super Seiyan!!!`,
-    },
-    avatarImg: {
-        stage0: 'https://media.giphy.com/media/u49rMyXHrTUw8/giphy.gif',  // stage0: Clueless, 
-        stage1: 'https://media.giphy.com/media/88kDwXuvzdwHK/giphy.gif',  // stage1: Has a dragonball, 
-        stage2: 'https://media.giphy.com/media/13mfssn73An6De/giphy.gif', // stage2: Lost goku adult, 
-        stage3: 'https://media.giphy.com/media/lPwZcFRMGOFPO/giphy.gif',  // stage3: Training Goku Adult, 
-        stage4: 'https://media.giphy.com/media/C7IxyUB2uXew0/giphy.gif',  // stage4: Turning Seiyan, 
-        stage5: 'https://media.giphy.com/media/B6SyssSlTgPXq/giphy.gif',  // stage5: Super Saiyan
+
+    inputElement(){
+    $('#avatar_NameAge').hide();
     },
 }
+
+// GAME PAGE: INITIATE 
 
 const gameInitiate = {
 
@@ -137,7 +140,7 @@ const gameInitiate = {
 
     updateAvatarToStage0(event) {
         // console.log('Update avatar');
-        $avatar.attr('src', goku.avatarImg.stage0)
+        $avatar.attr('src', gokuStages.avatarImg.stage0)
     },
 
     addName(event) {
@@ -153,7 +156,7 @@ const gameInitiate = {
     },
 
     addStageAndAge(event){
-        $('#row__avatarName').append(`<h4 id="seiyanStage">${goku.seiyanStage.stage0}</h4>`);
+        $('#row__avatarName').append(`<h4 id="seiyanStage">${gokuStages.seiyanStage.stage0}</h4>`);
         $('#row__avatarName').append(`<h4 id="avatarAge"></h4>`);
 
         $('#seiyanStage').css('margin-top', '5px')
@@ -173,7 +176,7 @@ const gameInitiate = {
     updateGameDesc(event){
         console.log('Update Game Desc. to show Coding Skills')
         $gameDesc__h6.text('Coding Journey');
-        $gameDesc__h6.append(`<p>${contentSkills.unitTitles[0]}</p>`);
+        $gameDesc__h6.append(`<p>${gokuStages.unitTitles[0]}</p>`);
         $('#gameDesc__ul > li').remove();
     },
  
@@ -188,6 +191,8 @@ const gameInitiate = {
         $boredomLevel.text(`Boredom: ${goku.boredomLevel}`);
     },
 }
+
+// GAME PAGE: INTERACT
 
 const gameFeed = {
 
@@ -272,53 +277,53 @@ const gameAge = {
             // REVIEW Evolve logic -- 60 lines of code with long IF conditions
             if( goku.age < goku.ageCutoff.stage1
             ){
-                $avatar.attr('src', goku.avatarImg.stage0);
-                $('#seiyanStage').text(`${goku.seiyanStage.stage0}`)
+                $avatar.attr('src', gokuStages.avatarImg.stage0);
+                $('#seiyanStage').text(`${gokuStages.seiyanStage.stage0}`)
             } else if(
                 goku.age >= goku.ageCutoff.stage1 &&
                 goku.age < goku.ageCutoff.stage2
             ){
-                $avatar.attr('src', goku.avatarImg.stage1);
-                $('#seiyanStage').text(`${goku.seiyanStage.stage1}`)
+                $avatar.attr('src', gokuStages.avatarImg.stage1);
+                $('#seiyanStage').text(`${gokuStages.seiyanStage.stage1}`)
                 if( goku.age === goku.ageCutoff.stage1){
                     $('#masterRoshiModal').modal('show');
                     $pauseButton.click();
-                    $gameDesc__h6.append(`<p class='unitsGA'>${contentSkills.unitTitles[1]}</p>`);
+                    $gameDesc__h6.append(`<p class='unitsGA'>${gokuStages.unitTitles[1]}</p>`);
                 };
             } else if (
                 goku.age >= goku.ageCutoff.stage2 && 
                 goku.age < goku.ageCutoff.stage3
             ){
-                $avatar.attr('src', goku.avatarImg.stage2);
-                $('#seiyanStage').text(`${goku.seiyanStage.stage2}`);
+                $avatar.attr('src', gokuStages.avatarImg.stage2);
+                $('#seiyanStage').text(`${gokuStages.seiyanStage.stage2}`);
                 if( goku.age === goku.ageCutoff.stage2){
-                    $gameDesc__h6.append(`<p class='unitsGA'>${contentSkills.unitTitles[2]}</p>`);
+                    $gameDesc__h6.append(`<p class='unitsGA'>${gokuStages.unitTitles[2]}</p>`);
                 };
             } else if (
                 goku.age >= goku.ageCutoff.stage3 && 
                 goku.age < goku.ageCutoff.stage4
             ){
-                $avatar.attr('src', goku.avatarImg.stage3);
-                $('#seiyanStage').text(`${goku.seiyanStage.stage3}`);
+                $avatar.attr('src', gokuStages.avatarImg.stage3);
+                $('#seiyanStage').text(`${gokuStages.seiyanStage.stage3}`);
                 if( goku.age === goku.ageCutoff.stage3){
-                    $gameDesc__h6.append(`<p class='unitsGA'>${contentSkills.unitTitles[3]}</p>`);
+                    $gameDesc__h6.append(`<p class='unitsGA'>${gokuStages.unitTitles[3]}</p>`);
                 };
             } else if (
                 goku.age >= goku.ageCutoff.stage4 && 
                 goku.age < goku.ageCutoff.stage5
             ){
-                $avatar.attr('src', goku.avatarImg.stage4);
-                $('#seiyanStage').text(`${goku.seiyanStage.stage4}`);                
+                $avatar.attr('src', gokuStages.avatarImg.stage4);
+                $('#seiyanStage').text(`${gokuStages.seiyanStage.stage4}`);                
                 if( goku.age === goku.ageCutoff.stage4){
-                    $gameDesc__h6.append(`<p class='unitsGA'>${contentSkills.unitTitles[4]}</p>`);
+                    $gameDesc__h6.append(`<p class='unitsGA'>${gokuStages.unitTitles[4]}</p>`);
                 };
             } else if (
                 goku.age >= goku.ageCutoff.stage5
             ){
-                $avatar.attr('src', goku.avatarImg.stage5);
-                $('#seiyanStage').text(`${goku.seiyanStage.stage5}`);
+                $avatar.attr('src', gokuStages.avatarImg.stage5);
+                $('#seiyanStage').text(`${gokuStages.seiyanStage.stage5}`);
                 if( goku.age === goku.ageCutoff.stage5){
-                    $gameDesc__h6.append(`<p class='unitsGA'>${contentSkills.unitTitles[5]}</p>`);
+                    $gameDesc__h6.append(`<p class='unitsGA'>${gokuStages.unitTitles[5]}</p>`);
                 };
             };
         }
@@ -377,7 +382,7 @@ const gameAge = {
     }
 }
 
-// EXTRA Buttons: Pause, Resume, Evolve, Coder Mode //
+// EXTRA BUTTONS: Pause, Resume, Evolve, Coder Mode //
 
 controlButtons = {
 
@@ -398,26 +403,23 @@ controlButtons = {
     evolveButton(event){
         console.log('evolve');
         goku.isPaused = true;
-        $avatar.attr('src', goku.avatarImg.stage5);
+        $avatar.attr('src', gokuStages.avatarImg.stage5);
 
         // Remove existing and add all content 
         $('.unitsGA').remove();
         $gameDesc__h6.append(`
-            <p>${contentSkills.unitTitles[1]}</p>
-            <p>${contentSkills.unitTitles[2]}</p>
-            <p>${contentSkills.unitTitles[3]}</p>
-            <p>${contentSkills.unitTitles[4]}</p><p>${contentSkills.unitTitles[5]}</p>`
+            <p>${gokuStages.unitTitles[1]}</p>
+            <p>${gokuStages.unitTitles[2]}</p>
+            <p>${gokuStages.unitTitles[3]}</p>
+            <p>${gokuStages.unitTitles[4]}</p><p>${gokuStages.unitTitles[5]}</p>`
             );
         $gameDesc__h6.css('line-height', 1.8);
     },
-
-    // evolveModal
 
     coderMode(event){
         goku.coderMode = true;
         $start.click();
 
-        // Label Updates
         $hungerLevel.text(`HTML: ${goku.hungerLevel}`);
         $sleepLevel.text(`CS: ${goku.sleepLevel}`);
         $boredomLevel.text(`JS: ${goku.boredomLevel}`);
@@ -426,6 +428,7 @@ controlButtons = {
 
 /* === Event Listeners === */
 
+// Basic Game Controls
 $start.click(gameInitiate.gameStart.bind(gameInitiate));
 $start.click(gameAge.startAging.bind(gameAge));
 $start.click((event) => $('#container__gameControls').show());
@@ -435,7 +438,7 @@ $sleepButton.click(gameFeed.sleep__gokuSleepLevel);
 $playButton.click(gameFeed.play__gokuBoredomLevel);
 
 
-// Extra Controls
+// Extra Game Controls
 $pauseButton.on('click', controlButtons.pauseButton.bind(controlButtons)); 
 $resumeButton.on('click', controlButtons.resumeButton.bind(controlButtons)); 
 $evolveButton.on('click', controlButtons.evolveButton.bind(controlButtons)); 
